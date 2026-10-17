@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zuvia × B3 | Real Estate Private Trust — Assunção (Villa Morra &amp; Paseo La Galería)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Barra Institucional de Governança e Sincronização Ledger B3 -->
+  <div class="institutional-topbar" role="region" aria-label="Governança Regulatória CVM Resolução 88 e Sincronização B3">
+    <div class="topbar-left">
+      <span class="compliance-pill">CVM Resolução 88 · Seção 0 &amp; Seção 8</span>
+      <span>
+        Segregação estrita entre <strong>Renda Distribuível de Caixa (OpCo → PropCo)</strong> e <strong>Variação Contábil de Valor Justo</strong>. Cenários patrimoniais exibidos exclusivamente como <strong>[CENÁRIO ILUSTRATIVO · NÃO PROMETIDO]</strong>.
+      </span>
+    </div>
+    <div class="topbar-right">
+      <span class="status-indicator">
+        <span class="led-dot" aria-hidden="true"></span>
+        LEDGER B3: SINCRONIZADO
+      </span>
+      <button type="button" class="theme-toggle-btn" id="btnToggleTheme" aria-label="Alternar tema visual">
+        <span id="themeToggleLabel">Modo Private Wealth (Claro)</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Cabeçalho Institucional Private Banking -->
+    <header class="site-header">
+      <div class="header-top">
+        <div class="brand-group">
+          <div class="brand-crest" aria-hidden="true">
+            <span class="crest-code">ZB3</span>
+            <span class="crest-sub">PY·BR</span>
+          </div>
+          <div class="brand-title">
+            <div class="brand-eyebrow">
+              <span>ZUVIA INFRAESTRUTURA DE MERCADO</span>
+              <span>•</span>
+              <span>TECNOLOGIA DE REGISTRO B3</span>
+              <span>•</span>
+              <span>PARAGUAI GRAU DE INVESTIMENTO (Baa3 MOODY'S)</span>
+            </div>
+            <h1>Mesa de Ativos Imobiliários Tokenizados — Assunção</h1>
+            <p class="brand-subtitle">
+              Participação econômica via Contratos de Investimento Coletivo (CIC) em prédios residenciais executivos inteiros (Matrícula Única) no eixo <strong>Villa Morra, Av. Mariscal López &amp; Shopping Paseo La Galería</strong>. Receita de locação em dólar (US$) com distribuição mensal via Pix (Câmbio Real).
+            </p>
+          </div>
+        </div>
+
+        <div class="header-tickers" aria-label="Indicadores Financeiros e Soberanos">
+          <div class="ticker-pill">
+            <span class="label">Rating Soberano PY</span>
+            <span class="val">Baa3 / BB+</span>
+            <span class="sub-val">Moody’s Investment Grade</span>
+          </div>
+          <div class="ticker-pill">
+            <span class="label">Câmbio PTAX / Liquidação</span>
+            <span class="val" id="headerCambioBrl">R$ 5,6500</span>
+            <span class="sub-val">US$ 1,00 · Spot Referencial</span>
+          </div>
+          <div class="ticker-pill">
+            <span class="label">Moeda Local Assunção</span>
+            <span class="val">G$ 7.820</span>
+            <span class="sub-val">Regime Territorial 10-10-10</span>
+          </div>
+          <div class="ticker-pill">
+            <span class="label">Valor Nominal Unitário</span>
+            <span class="val">R$ 25,00</span>
+            <span class="sub-val">Lote Padrão CIC Zuvia/B3</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arquitetura Jurídico-Operacional e Custódia Cross-Border (Seção 2) -->
+      <div class="custody-architecture-bar" aria-label="Arquitetura Jurídico-Operacional Seção 2">
+        <div class="custody-title-col">
+          <span class="eyebrow">Estrutura Fiduciária &amp; Fluxo de Caixa (Seção 2)</span>
+          <strong>Dupla Conciliação Independente · Sem Produto Financeiro PY · Sem Promessa de Recompra</strong>
+        </div>
+        <div class="arch-flow">
+          <div class="arch-node">
+            <span class="node-jur">Jurisdição Brasil · BCB</span>
+            <span class="node-name">Investidores BR (Pix R$)</span>
+          </div>
+          <span class="arch-connector">──▶</span>
+          <div class="arch-node">
+            <span class="node-jur">CVM Res. 88 · Escrituração</span>
+            <span class="node-name">Zuvia &amp; Ledger B3 (CIC)</span>
+          </div>
+          <span class="arch-connector">──▶</span>
+          <div class="arch-node">
+            <span class="node-jur">Veículo Dedicado BR</span>
+            <span class="node-name">SPE Emissora / Holding</span>
+          </div>
+          <span class="arch-connector">──▶</span>
+          <div class="arch-node">
+            <span class="node-jur">DGRP Assunção · Gate 6.2</span>
+            <span class="node-name">PropCo PY (Matrícula Única)</span>
+          </div>
+          <span class="arch-connector">◀─▶</span>
+          <div class="arch-node">
+            <span class="node-jur">Contrato Mestre 10 Anos</span>
+            <span class="node-name">OpCo PY (Locação US$ + Piso)</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navegação Executiva de Módulos -->
+    <nav class="nav-tabs" aria-label="Módulos do Sistema Institucional">
+      <button type="button" class="tab-btn active" data-tab="tab-marketplace">
+        <span class="tab-num">01</span> Emissões &amp; Mesa de Estruturação (Villa Morra &amp; Galería)
+      </button>
+      <button type="button" class="tab-btn" data-tab="tab-construtoras">
+        <span class="tab-num">02</span> Rating de Crédito &amp; Due Diligence de Incorporadoras
+      </button>
+      <button type="button" class="tab-btn" data-tab="tab-propco-opco">
+        <span class="tab-num">03</span> Governança PropCo/OpCo, Gate 6.2 &amp; Liquidação Pix (6.3)
+      </button>
+      <button type="button" class="tab-btn" data-tab="tab-carteira-b3">
+        <span class="tab-num">04</span> Custódia B3, Laudos NAV &amp; Mercado Subsequente (6.4)
+      </button>
+      <button type="button" class="tab-btn" data-tab="tab-governanca">
+        <span class="tab-num">05</span> Conformidade CVM 88 (P1–P6) &amp; Auditoria DLT
+      </button>
+    </nav>
+
+    <!-- MÓDULO 01: MARKETPLACE VILLA MORRA & PASEO LA GALERÍA + SIMULADOR -->
+    <section id="tab-marketplace" class="tab-panel active" aria-label="Emissões Primárias e Simulador Patrimonial">
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Ativos Sob Estruturação (Matrícula Única)</div>
+          <div class="kpi-value">4 Edifícios Corporativos/Res.</div>
+          <div class="kpi-sub">14.950 m² privativos · 222 unidades mobiliadas</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Yield Alvo de Locação (Caixa Líquido US$)</div>
+          <div class="kpi-value" style="color: var(--emerald-light);">7,90% – 9,10% a.a.</div>
+          <div class="kpi-sub">Piso contratual OpCo: 6,50% a 7,00% a.a. em US$</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Volume Global de Emissão (CVM Res. 88)</div>
+          <div class="kpi-value">R$ 51.250.000</div>
+          <div class="kpi-sub">2.050.000 tokens CIC · Respeitando teto R$ 15M/SPE</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Integridade de Registro (Ledger B3 × Local)</div>
+          <div class="kpi-value" style="color: var(--gold-light);">1.549.000 CIC</div>
+          <div class="kpi-sub">Conciliação diária determinística (Divergência: 0,00)</div>
+        </div>
+      </div>
+
+      <!-- Filtros Institucionais -->
+      <div class="filter-bar">
+        <div class="filter-group">
+          <label for="filterZona">Eixo Imobiliário (Assunção)</label>
+          <select id="filterZona">
+            <option value="TODAS">Todos os Eixos Prime (Villa Morra, Paseo La Galería &amp; WTC)</option>
+            <option value="Paseo La Galería / Santa Teresa">Eixo Shopping Paseo La Galería / Av. Santa Teresa</option>
+            <option value="Villa Morra / Mariscal López">Villa Morra / Av. Mariscal López</option>
+            <option value="Ykua Sati / WTC">Ykua Sati / WTC Asunción</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filterConstrutora">Incorporadora &amp; Rating de Crédito</label>
+          <select id="filterConstrutora">
+            <option value="TODAS">Todas as Incorporadoras Auditadas (AAA a A+)</option>
+            <option value="CONST-FORTIS">Fortis &amp; Morra Desarrollos S.A. (Rating AAA · PwC)</option>
+            <option value="CONST-EJE">Constructora Eje Corporativo S.A. (Rating AA+ · Deloitte)</option>
+            <option value="CONST-COSTANERA">Grupo Costanera &amp; Asunción Prime (Rating AA · EY)</option>
+            <option value="CONST-CHACO">Inmobiliaria del Chaco &amp; Mariscal S.A. (Rating A+ · Grant Thornton)</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label for="filterStatus">Estágio do Ciclo de Vida (Seção 5.3)</label>
+          <select id="filterStatus">
+            <option value="TODOS">Todos os Estágios Operacionais</option>
+            <option value="Em oferta">Oferta Pública Primária Zuvia (R$ 25,00 / CIC)</option>
+            <option value="Ativo em operação · Mercado subsequente">Ativo Operacional · Negociação Subsequente B3</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="marketplace-layout">
+        <!-- Dossiês dos Ativos -->
+        <div id="assetCardsContainer" class="cards-grid"></div>
+
+        <!-- Mesa de Simulação de Fluxo de Caixa (Seções 0, 2 e 8) -->
+        <aside class="simulator-panel" aria-label="Calculadora Institucional de Renda e Cenário Ilustrativo">
+          <span class="badge badge-gold">MODELAGEM DETERMINÍSTICA · SEÇÕES 0, 2 E 8</span>
+          <h3>Estruturação de Posição &amp; Fluxo de Caixa</h3>
+          <p style="font-size: 0.79rem; color: var(--text-secondary);">
+            Segregação contábil estrita entre <strong>(A) Renda Distribuível de Caixa</strong> e <strong>(B) Variação de Valor Justo Ilustrativa</strong>.
+          </p>
+
+          <div class="sim-form">
+            <div class="filter-group">
+              <label for="simAtivoSelect">Série / Empreendimento Lastreado</label>
+              <select id="simAtivoSelect"></select>
+            </div>
+
+            <div class="filter-group">
+              <label for="simValorBrl">Montante de Alocação (R$ · Múltiplos de R$ 25,00)</label>
+              <input type="number" id="simValorBrl" value="25000" min="25" step="250" class="mono" />
+              <div class="tranche-buttons" aria-label="Seleção rápida de aporte">
+                <button type="button" class="tranche-btn" data-val="5000">R$ 5 mil</button>
+                <button type="button" class="tranche-btn active" data-val="25000">R$ 25 mil</button>
+                <button type="button" class="tranche-btn" data-val="100000">R$ 100 mil</button>
+                <button type="button" class="tranche-btn" data-val="250000">R$ 250 mil</button>
+              </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+              <div class="filter-group">
+                <label for="simCambioBrl">Câmbio PTAX (US$ → R$)</label>
+                <input type="number" id="simCambioBrl" value="5.65" min="3.50" max="10.00" step="0.05" class="mono" />
+              </div>
+              <div class="filter-group">
+                <label for="simAnos">Horizonte (Anos)</label>
+                <input type="number" id="simAnos" value="5" min="1" max="15" step="1" class="mono" />
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label for="simCenarioSelect">Hipótese de Avaliação Patrimonial Anual (Seção 6.5)</label>
+              <select id="simCenarioSelect"></select>
+            </div>
+          </div>
+
+          <!-- BLOCO A: RENDA DISTRIBUÍVEL DE CAIXA (SEÇÃO 2 e 6.3) -->
+          <div class="sim-box-cash">
+            <div class="badge badge-rating" style="margin-bottom: 0.5rem;">
+              (A) FLUXO DE CAIXA DISTRIBUÍVEL · LOCAÇÃO (OpCo → PropCo)
+            </div>
+            <div class="sim-row">
+              <span>Posição Escriturada no Ledger B3:</span>
+              <strong id="simOutTokens">1.000 CIC</strong>
+            </div>
+            <div class="sim-row">
+              <span>Lastro Imobiliário Equivalente (PY):</span>
+              <strong id="simOutCapitalUsd">US$ 4.424,78</strong>
+            </div>
+            <div class="sim-row">
+              <span>Dividendo Mensal Projetado (Pix R$):</span>
+              <strong id="simOutRendaMensal" style="color: var(--emerald-light);">R$ 175,00 / mês</strong>
+            </div>
+            <div class="sim-row">
+              <span>Piso Contratual Mínimo OpCo (Downside):</span>
+              <strong id="simOutPisoAnual">6,8% a.a. (R$ 1.700,00/ano)</strong>
+            </div>
+            <div class="sim-row">
+              <span>Caixa Acumulado de Aluguéis no Período:</span>
+              <strong id="simOutRendaTotalHorizonte" style="color: var(--emerald-light);">R$ 10.500,00</strong>
+            </div>
+          </div>
+
+          <!-- BLOCO B: VARIAÇÃO CONTÁBIL DE VALOR JUSTO (SEÇÃO 0, 2 e 8) -->
+          <div class="sim-box-valuation">
+            <div class="badge badge-gold" style="margin-bottom: 0.5rem;">
+              (B) [CENÁRIO ILUSTRATIVO · NÃO PROMETIDO]
+            </div>
+            <div class="sim-row">
+              <span>NAV Projetado por Laudo Independente:</span>
+              <strong id="simOutPatrimonioFinal">R$ 33.455,64</strong>
+            </div>
+            <div class="sim-row">
+              <span>Variação Contábil de Valor Justo (Não Caixa):</span>
+              <strong id="simOutGanhoCapital" style="color: var(--gold-light);">+ R$ 8.455,64</strong>
+            </div>
+            <p id="simOutAvisoCenario" style="font-size: 0.72rem; color: var(--text-secondary); margin-top: 0.55rem; line-height: 1.45;"></p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- MÓDULO 02: CONSTRUTORAS, OBRAS DE REFERÊNCIA E RATING DE CRÉDITO/RISCO -->
+    <section id="tab-construtoras" class="tab-panel" aria-label="Relatório de Crédito e Due Diligence de Incorporadoras">
+      <div class="section-card">
+        <h2>Comitê de Crédito &amp; Due Diligence Técnica — Incorporadoras Homologadas em Assunção</h2>
+        <p class="section-desc">
+          Análise institucional de solvência, alavancagem (Dívida Líquida/PL), histórico de entregas no eixo Villa Morra / Santa Teresa e estrutura de Fideicomiso Bancário (Escrow). Conforme Seção 1 da especificação técnica, <strong>nenhuma construtora oferece garantia de recompra</strong>; a segurança estrutural reside na titularidade da Matrícula Única pela PropCo PY (Gate 6.2) e no Contrato Mestre de Locação com a OpCo PY.
+        </p>
+        <div id="buildersContainer" class="builders-grid"></div>
+      </div>
+    </section>
+
+    <!-- MÓDULO 03: ESTRUTURA PROPCO/OPCO, GATE DE MATRÍCULA 6.2 E DISTRIBUIÇÃO PIX 6.3 -->
+    <section id="tab-propco-opco" class="tab-panel" aria-label="Governança Fiduciária PropCo OpCo e Gates Operacionais">
+      <div class="gate-grid">
+        <!-- Gate 6.2: Aquisição do Imóvel e Registro da Matrícula -->
+        <div class="section-card">
+          <span class="badge badge-gold">SEÇÃO 6.2 &amp; SEÇÃO 8 · TRAVA FIDUCIÁRIA DE DESEMBOLSO</span>
+          <h2 style="margin-top: 0.4rem;">Gate 6.2 — Controle de Desembolso BR → PropCo PY</h2>
+          <p class="section-desc">
+            Diretriz de Engenharia: <strong>Proibida inversão de fluxo</strong>. O motor financeiro bloqueia qualquer remessa internacional da conta segregada da oferta enquanto a Certidão de Matrícula Única emitida pela <em>Dirección General de los Registros Públicos (Assunção)</em> em nome da PropCo PY não estiver averbada e auditada.
+          </p>
+
+          <div class="filter-group" style="margin-bottom: 1rem;">
+            <label for="gate62AtivoSelect">Selecionar Série para Auditoria do Gate 6.2</label>
+            <select id="gate62AtivoSelect"></select>
+          </div>
+
+          <div id="gate62StatusBox" class="gate-card"></div>
+
+          <div style="margin-top: 1.1rem; display: flex; flex-wrap: wrap; gap: 0.65rem;">
+            <button type="button" class="btn btn-secondary" id="btnAnexarCertidaoGate62">
+              Registrar Averbação de Escritura DGRP (Assunção)
+            </button>
+            <button type="button" class="btn btn-primary" id="btnTestarDesembolsoGate62">
+              Submeter Ordem de Remessa Cambial BR → PropCo PY
+            </button>
+          </div>
+          <div id="gate62Feedback"></div>
+        </div>
+
+        <!-- Gate 6.3: Operação OpCo e Aprovação em Dupla para Pix -->
+        <div class="section-card">
+          <span class="badge badge-rating">SEÇÃO 6.3 &amp; SEÇÃO 9 · ALÇADA DUPLA OBRIGATÓRIA</span>
+          <h2 style="margin-top: 0.4rem;">Fluxo 6.3 — Fechamento OpCo &amp; Liquidação Pix de Dividendos</h2>
+          <p class="section-desc">
+            Conciliação do aluguel mínimo fixo + variável pago pela OpCo PY à PropCo PY, retenção de tributos territoriais paraguaios e exigência de dupla assinatura eletrônica (Diretoria Financeira + Compliance) antes da instrução de pagamento Pix via Zuvia.
+          </p>
+
+          <div id="opcoResumoBox" class="gate-card" style="margin-bottom: 1rem;"></div>
+
+          <div style="display: flex; flex-direction: column; gap: 0.65rem; margin-bottom: 1.1rem; padding: 0.85rem; background: var(--bg-surface); border: 1px solid var(--border-hairline); border-radius: var(--radius-xs);">
+            <label style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; cursor: pointer;">
+              <input type="checkbox" id="chkAprovFinanceiro" />
+              <span><strong>1ª Assinatura — Diretoria Financeira:</strong> Fechamento de câmbio US$ → R$ (PTAX R$ 5,6500) e extrato bancário da PropCo PY conciliados.</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 0.6rem; font-size: 0.82rem; cursor: pointer;">
+              <input type="checkbox" id="chkAprovCompliance" />
+              <span><strong>2ª Assinatura — Compliance &amp; Risco:</strong> Snapshot de titularidade validado contra o Ledger B3 e obrigações fiscais verificadas.</span>
+            </label>
+          </div>
+
+          <button type="button" class="btn btn-primary" id="btnExecutarDistribuicaoPix">
+            Autorizar &amp; Liquidar Lote de Dividendos via Pix (Zuvia / B3)
+          </button>
+          <div id="gate63Feedback"></div>
+        </div>
+      </div>
+
+      <!-- Tabela Detalhada dos 3 Canais da OpCo -->
+      <div class="section-card">
+        <h2>Demonstrativo Operacional da OpCo por Canal de Locação (Competência Outubro/2026 · ZUV-WTC03)</h2>
+        <p class="section-desc">
+          Monitoramento contínuo do Contrato de Locação Mestre PropCo–OpCo (entidades <code>ReceitaMensal</code> e <code>FluxoPropCo</code> da Seção 4). Inclui cláusula de <em>step-in right</em> (substituição da OpCo) caso a ocupação consolidada permaneça inferior a 75% por 2 trimestres consecutivos.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Canal de Locação Mobiliada</th>
+                <th>Unidades Alocadas</th>
+                <th>Taxa de Ocupação</th>
+                <th>Receita Bruta (US$)</th>
+                <th>OpEx Operacional (US$)</th>
+                <th>Perfil de Locatários (Eixo Villa Morra / WTC)</th>
+              </tr>
+            </thead>
+            <tbody id="opcoChannelsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÓDULO 04: CARTEIRA DO INVESTIDOR, LAUDOS NAV & MERCADO SUBSEQUENTE B3/ZUVIA -->
+    <section id="tab-carteira-b3" class="tab-panel" aria-label="Custódia B3, Laudos Independentes e Mercado Subsequente">
+      <div class="section-card">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.1rem;">
+          <div>
+            <h2>Posição Consolidada sob Custódia (Espelho do Ledger B3) &amp; Distinção NAV × Preço (Seção 6.4)</h2>
+            <p class="section-desc" style="margin-bottom: 0;">
+              Em conformidade com a Seção 6.4: este sistema não forma preço; apresenta em colunas segregadas o <strong>Valor Patrimonial por Token (Laudo NAV Independente)</strong> e o <strong>Último Preço Negociado no Ambiente B3/Zuvia</strong>.
+            </p>
+          </div>
+          <span class="badge badge-warning">AVISO REGULATÓRIO: LIQUIDEZ SECUNDÁRIA NÃO É GARANTIDA</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Código CIC</th>
+                <th>Ativo Lastreado (Assunção)</th>
+                <th>Posição Custodiada</th>
+                <th>Preço Médio</th>
+                <th>Valor Patrimonial (Laudo NAV)</th>
+                <th>Último Negócio (Ambiente B3/Zuvia)</th>
+                <th>Provento Caixa Estimado (Pix/mês)</th>
+                <th>Chave de Registro Ledger B3</th>
+              </tr>
+            </thead>
+            <tbody id="portfolioTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="gate-grid">
+        <div class="section-card">
+          <h2>Livro de Ofertas — Ambiente de Negociação Subsequente B3 / Zuvia</h2>
+          <p class="section-desc">
+            Negociação restrita a investidores qualificados/aptos com KYC ativo na Zuvia e liquidação D+0 via Pix.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Natureza</th>
+                  <th>Série CIC</th>
+                  <th>Quantidade</th>
+                  <th>Cotação (R$)</th>
+                  <th>Ambiente de Liquidação</th>
+                </tr>
+              </thead>
+              <tbody id="orderBookTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2>Laudos Anuais de Avaliação Independente &amp; Assinatura SHA-256 (Seção 6.5)</h2>
+          <p class="section-desc">
+            Registros imutáveis de valor justo (<em>Fair Value</em>) emitidos por avaliadores internacionais. Variações patrimoniais não transitam pelo caixa distribuível mensal.
+          </p>
+          <div id="laudosContainer" style="display: flex; flex-direction: column; gap: 0.75rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÓDULO 05: GOVERNANÇA CVM 88, CHECKLIST P1-P6 E CONCILIAÇÃO DIÁRIA B3 -->
+    <section id="tab-governanca" class="tab-panel" aria-label="Governança Jurídica P1 a P6 e Conciliação DLT">
+      <div class="section-card">
+        <h2>Matriz de Condições Precedentes &amp; Governança Regulatória — Pontos P1 a P6 (Seção 0)</h2>
+        <p class="section-desc">
+          Controle de engenharia e compliance jurídico pré-emissão para validação junto aos assessores legais (Brasil e Paraguai), Zuvia e B3, conforme documentado em <a href="ESPECIFICACAO_IMOBILIARIO_ZUVIA.md" style="color: var(--gold-light);">ESPECIFICACAO_IMOBILIARIO_ZUVIA.md</a>.
+        </p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Matéria Regulatória / Estrutural</th>
+                <th>Relevância Crítica</th>
+                <th>Alçada Responsável</th>
+                <th>Trava de Engenharia Implementada</th>
+              </tr>
+            </thead>
+            <tbody id="p1p6TableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="gate-grid">
+        <div class="section-card">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+            <h2>Conciliação Diária Automatizada: Base Local × Ledger B3 (Seção 9)</h2>
+            <button type="button" class="btn btn-secondary" id="btnRodarConciliacaoB3">
+              Executar Reconciliação DLT
+            </button>
+          </div>
+          <p class="section-desc">
+            A infraestrutura B3/Zuvia constitui a fonte primária da verdade para titularidade dos tokens. Divergências acionam bloqueio automático de pagamento.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Série CIC</th>
+                  <th>Espelho Local</th>
+                  <th>Registro B3</th>
+                  <th>Delta</th>
+                  <th>Status de Auditoria</th>
+                </tr>
+              </thead>
+              <tbody id="reconciliationTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2>Trilha de Auditoria Imutável (<code>EventoAuditoria</code> · Seções 4 e 9)</h2>
+          <p class="section-desc">
+            Registro cronológico assinado de eventos de subscrição, averbação de matrícula, conciliação de custódia e distribuição de caixa.
+          </p>
+          <div id="auditLogContainer" style="display: flex; flex-direction: column; gap: 0.65rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="institutional-footer">
+      <div>
+        <strong>ZUVIA × INFRAESTRUTURA B3 — ASUNCIÓN REAL ESTATE TOKENIZED TRUST</strong><br />
+        Arquitetura Técnica v0.1 · Especificação de Engenharia sob Resolução CVM 88 · Custódia e Liquidação via Pix.
+      </div>
+      <div class="mono" style="text-align: right;">
+        JURISDIÇÃO ATIVO: ASSUNÇÃO, PARAGUAI (DGRP) · JURISDIÇÃO OFERTA: BRASIL (CVM)<br />
+        NENHUM VALOR DE VALORIZAÇÃO PATRIMONIAL CONSTITUI PROMESSA DE RENTABILIDADE
+      </div>
+    </footer>
+  </div>
+
+  <!-- BOLETA INSTITUCIONAL DE SUBSCRIÇÃO PRIMÁRIA (<dialog closedby="any">) -->
+  <dialog id="subscribeDialog" closedby="any" aria-labelledby="dialogSubscribeTitle">
+    <div class="dialog-inner">
+      <div class="dialog-header">
+        <div>
+          <span class="badge badge-gold" id="modalAssetTicker">ZUV-GAL01</span>
+          <h3 id="dialogSubscribeTitle" style="font-family: var(--font-serif); font-size: 1.4rem; margin-top: 0.35rem;">
+            Boleta de Subscrição Primária — Oferta Regulada CVM 88
+          </h3>
+        </div>
+        <button type="button" class="close-btn" id="btnCloseDialog" aria-label="Fechar boleta">ESC ✕</button>
+      </div>
+
+      <p id="modalAssetSubtitle" style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1rem;"></p>
+
+      <form id="subscribeForm" method="dialog" style="display: flex; flex-direction: column; gap: 0.95rem;">
+        <div class="filter-group">
+          <label for="modalQtdTokens">Quantidade de Tokens CIC (Valor Nominal Unitário: R$ 25,00)</label>
+          <input type="number" id="modalQtdTokens" value="400" min="1" max="50000" step="10" class="mono" required />
+        </div>
+
+        <div class="sim-box-cash" style="margin-top: 0;">
+          <div class="sim-row">
+            <span>Volume Financeiro da Ordem (Liquidação Pix):</span>
+            <strong id="modalTotalBrl">R$ 10.000,00</strong>
+          </div>
+          <div class="sim-row">
+            <span>Exposição Patrimonial Equivalente na PropCo PY:</span>
+            <strong id="modalTotalUsd">US$ 1.769,91</strong>
+          </div>
+          <div class="sim-row">
+            <span>Dividendo Mensal Projetado (Caixa US$ → Pix R$):</span>
+            <strong id="modalRendaMensalBrl" style="color: var(--emerald-light);">R$ 70,00 / mês</strong>
+          </div>
+          <div class="sim-row">
+            <span>Proteção Contratual Mínima (Piso OpCo PY):</span>
+            <strong id="modalPisoOpCo">6,8% a.a. em US$</strong>
+          </div>
+        </div>
+
+        <label style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.77rem; color: var(--text-secondary); cursor: pointer; line-height: 1.45;">
+          <input type="checkbox" id="modalTermoRisco" required style="margin-top: 0.2rem;" />
+          <span>
+            <strong>Termo de Ciência de Risco e Conformidade (CVM Res. 88):</strong> Declaro ciência de que a subscrição refere-se a Contrato de Investimento Coletivo (CIC) distribuído pela Zuvia e escriturado na infraestrutura B3, sem garantia de recompra por construtora ou terceiro, sem garantia de liquidez no mercado subsequente e com segregação estrita entre renda de locação e cenários ilustrativos de avaliação.
+          </span>
+        </label>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.65rem; margin-top: 0.4rem;">
+          <button type="button" class="btn btn-secondary" id="btnCancelModal">Cancelar Ordem</button>
+          <button type="submit" class="btn btn-primary">Assinar &amp; Liquidar Ordem via Pix (R$)</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <script src="real-estate.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
