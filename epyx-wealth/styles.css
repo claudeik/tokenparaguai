@@ -1,0 +1,1243 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Paleta EPYX Wealth — Institutional Private Banking Dark (Default) */
+  --bg-canvas: #060a11;
+  --bg-surface: #0b111d;
+  --bg-card: #0f1726;
+  --bg-card-alt: #131d30;
+  --bg-elevated: #18243a;
+  --bg-glass: rgba(15, 23, 38, 0.88);
+
+  --border-hairline: rgba(148, 163, 184, 0.14);
+  --border-strong: rgba(148, 163, 184, 0.26);
+  --border-gold: rgba(197, 160, 89, 0.45);
+  --border-gold-subtle: rgba(197, 160, 89, 0.22);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #8b9bb4;
+  --text-faint: #64748b;
+
+  /* Acentos Institucionais EPYX Wealth */
+  --gold-primary: #c5a059;
+  --gold-light: #e4c88c;
+  --gold-bg: rgba(197, 160, 89, 0.11);
+
+  --emerald-primary: #10b981;
+  --emerald-light: #34d399;
+  --emerald-bg: rgba(16, 185, 129, 0.10);
+  --emerald-border: rgba(16, 185, 129, 0.32);
+
+  --navy-b3: #38bdf8;
+  --navy-b3-bg: rgba(56, 189, 248, 0.10);
+  --navy-b3-border: rgba(56, 189, 248, 0.32);
+
+  --crimson-alert: #ef4444;
+  --crimson-bg: rgba(239, 68, 68, 0.11);
+  --crimson-border: rgba(239, 68, 239, 0.35);
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-card: 0 12px 32px -8px rgba(0, 0, 0, 0.58), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-elevated: 0 24px 48px -12px rgba(0, 0, 0, 0.78);
+
+  --font-serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+}
+
+/* Tema Institucional Claro (EPYX Private Wealth Ivory & Sovereign Navy) */
+[data-theme="light"] {
+  --bg-canvas: #f4f2ed;
+  --bg-surface: #eae6dd;
+  --bg-card: #ffffff;
+  --bg-card-alt: #f9f8f4;
+  --bg-elevated: #f0ede6;
+  --bg-glass: rgba(255, 255, 255, 0.94);
+
+  --border-hairline: rgba(15, 23, 42, 0.10);
+  --border-strong: rgba(15, 23, 42, 0.20);
+  --border-gold: rgba(154, 117, 48, 0.48);
+  --border-gold-subtle: rgba(154, 117, 48, 0.25);
+
+  --text-primary: #0a1120;
+  --text-secondary: #334155;
+  --text-muted: #52627a;
+  --text-faint: #7c8ba1;
+
+  --gold-primary: #9a7530;
+  --gold-light: #78581a;
+  --gold-bg: rgba(154, 117, 48, 0.09);
+
+  --emerald-primary: #047857;
+  --emerald-light: #065f46;
+  --emerald-bg: rgba(4, 120, 87, 0.08);
+  --emerald-border: rgba(4, 120, 87, 0.28);
+
+  --navy-b3: #0369a1;
+  --navy-b3-bg: rgba(3, 105, 161, 0.08);
+  --navy-b3-border: rgba(3, 105, 161, 0.26);
+
+  --crimson-alert: #b91c1c;
+  --crimson-bg: rgba(185, 28, 28, 0.08);
+  --crimson-border: rgba(185, 28, 28, 0.28);
+
+  --shadow-card: 0 4px 20px -4px rgba(15, 23, 42, 0.07), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --shadow-elevated: 0 20px 40px -12px rgba(15, 23, 42, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-canvas);
+  background-image:
+    radial-gradient(ellipse 80% 45% at 50% -15%, rgba(197, 160, 89, 0.09), transparent),
+    radial-gradient(ellipse 55% 40% at 90% 10%, rgba(56, 189, 248, 0.04), transparent);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.55;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.mono,
+.tabular {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* 1. Barra Superior IAM, Governança e Conta Única EPYX Wealth */
+.institutional-topbar {
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-gold-subtle);
+  padding: 0.55rem 1.75rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.compliance-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.18rem 0.6rem;
+  border-radius: var(--radius-xs);
+  background: var(--gold-bg);
+  border: 1px solid var(--border-gold);
+  color: var(--gold-light);
+  font-weight: 600;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+}
+
+.iam-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xs);
+  padding: 0.2rem 0.55rem;
+  font-size: 0.72rem;
+}
+
+.iam-control label {
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.65rem;
+  letter-spacing: 0.05em;
+}
+
+.iam-select {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-size: 0.73rem;
+  font-weight: 600;
+  padding: 0.1rem 0.2rem;
+  cursor: pointer;
+}
+
+.iam-select:focus {
+  outline: none;
+}
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.71rem;
+  color: var(--text-muted);
+}
+
+.led-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--emerald-primary);
+  box-shadow: 0 0 8px var(--emerald-primary);
+}
+
+.theme-toggle-btn {
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xs);
+  padding: 0.28rem 0.65rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.theme-toggle-btn:hover {
+  border-color: var(--gold-primary);
+  color: var(--text-primary);
+}
+
+/* Container Principal */
+.container {
+  max-width: 1420px;
+  margin: 0 auto;
+  padding: 0 1.75rem 4.5rem;
+}
+
+/* 2. Cabeçalho Executivo EPYX Wealth */
+.site-header {
+  padding: 1.85rem 0 1.4rem;
+  border-bottom: 1px solid var(--border-hairline);
+  margin-bottom: 1.5rem;
+}
+
+.header-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+}
+
+.brand-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  max-width: 800px;
+}
+
+.brand-crest {
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(145deg, #162032 0%, #090e18 100%);
+  border: 1px solid var(--border-gold);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-light);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 8px 20px rgba(0, 0, 0, 0.38);
+  flex-shrink: 0;
+}
+
+.brand-crest .crest-code {
+  font-family: var(--font-serif);
+  font-size: 1.22rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.brand-crest .crest-sub {
+  font-family: var(--font-mono);
+  font-size: 0.53rem;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.brand-eyebrow {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--gold-primary);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.brand-title h1 {
+  font-family: var(--font-serif);
+  font-size: 2.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.12;
+  color: var(--text-primary);
+}
+
+.brand-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.87rem;
+  margin-top: 0.4rem;
+  line-height: 1.5;
+}
+
+.header-tickers {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 0.65rem;
+}
+
+@media (max-width: 920px) {
+  .header-tickers {
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+  }
+}
+
+.ticker-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-top: 2px solid var(--border-gold-subtle);
+  border-radius: var(--radius-xs);
+  padding: 0.55rem 0.9rem;
+  min-width: 140px;
+}
+
+.ticker-pill .label {
+  color: var(--text-muted);
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin-bottom: 0.15rem;
+}
+
+.ticker-pill .val {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text-primary);
+}
+
+.ticker-pill .sub-val {
+  font-size: 0.67rem;
+  color: var(--emerald-light);
+  display: block;
+  margin-top: 1px;
+}
+
+/* 3. AS DUAS PORTAS INSTITUCIONAIS EPYX WEALTH (Seção 0 e 2.2) */
+.dual-doors-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.35rem;
+  margin-bottom: 1.65rem;
+}
+
+@media (max-width: 980px) {
+  .dual-doors-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.door-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 1.5rem 1.6rem;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.door-card.door-invest {
+  border-top: 3px solid var(--gold-primary);
+}
+
+.door-card.door-pickgo {
+  border-top: 3px solid var(--navy-b3);
+}
+
+.door-card.active-door {
+  border-color: var(--border-gold);
+  box-shadow: var(--shadow-elevated);
+}
+
+.door-card h2 {
+  font-family: var(--font-serif);
+  font-size: 1.55rem;
+  font-weight: 700;
+  margin: 0.45rem 0 0.4rem;
+  color: var(--text-primary);
+}
+
+.door-card p {
+  font-size: 0.84rem;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+}
+
+.door-meta-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  margin-bottom: 1.15rem;
+  padding: 0.85rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  font-size: 0.77rem;
+}
+
+.door-meta-list li span {
+  display: block;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.door-meta-list li strong {
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+}
+
+/* 4. Banner de RBAC / Papel Ativo (Seção 6) */
+.rbac-banner {
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-hairline);
+  border-left: 3px solid var(--gold-primary);
+  border-radius: var(--radius-xs);
+  padding: 0.65rem 1.1rem;
+  margin-bottom: 1.35rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.79rem;
+}
+
+/* 5. Navegação Executiva de Módulos */
+.nav-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-bottom: 1.65rem;
+  border-bottom: 1px solid var(--border-strong);
+  padding-bottom: 0;
+}
+
+.tab-btn {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  border-radius: var(--radius-xs) var(--radius-xs) 0 0;
+  padding: 0.75rem 1.05rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: -1px;
+}
+
+.tab-btn .tab-num {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--gold-primary);
+  opacity: 0.9;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(148, 163, 184, 0.05);
+}
+
+.tab-btn.active {
+  background: var(--bg-card);
+  border-color: var(--border-hairline);
+  border-bottom-color: var(--gold-primary);
+  color: var(--text-primary);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+/* 6. Painel de Indicadores Consolidados (KPI Strip) */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kpi-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1.2rem;
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold-primary), transparent);
+  opacity: 0.7;
+}
+
+.kpi-card .kpi-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.kpi-card .kpi-value {
+  font-size: 1.45rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.kpi-card .kpi-sub {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.3rem;
+}
+
+/* 7. Barra de Filtros Institucional */
+.filter-bar {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  box-shadow: var(--shadow-card);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+  min-width: 190px;
+}
+
+.filter-group label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+select,
+input[type="number"],
+input[type="text"] {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-xs);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.84rem;
+  font-family: var(--font-sans);
+  transition: border-color 0.15s ease;
+}
+
+select:focus,
+input:focus {
+  outline: none;
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 0 2px var(--gold-bg);
+}
+
+/* 8. Layout Catálogo + Mesa Lateral */
+.marketplace-layout {
+  display: grid;
+  grid-template-columns: 1.62fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 1120px) {
+  .marketplace-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1.15rem;
+}
+
+/* 9. Dossiê de Ativo / Card de Produto */
+.asset-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 1.45rem;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.asset-card:hover {
+  border-color: var(--border-gold);
+}
+
+.asset-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.15rem;
+  padding-bottom: 0.95rem;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.18rem 0.55rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.67rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-ticker {
+  background: var(--navy-b3-bg);
+  color: var(--navy-b3);
+  border: 1px solid var(--navy-b3-border);
+  font-family: var(--font-mono);
+  font-weight: 700;
+}
+
+.badge-rating {
+  background: var(--emerald-bg);
+  color: var(--emerald-light);
+  border: 1px solid var(--emerald-border);
+}
+
+.badge-gold {
+  background: var(--gold-bg);
+  color: var(--gold-light);
+  border: 1px solid var(--border-gold);
+}
+
+.badge-warning {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.38);
+}
+
+.badge-danger {
+  background: var(--crimson-bg);
+  color: var(--crimson-alert);
+  border: 1px solid rgba(239, 68, 68, 0.38);
+}
+
+.asset-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.asset-address {
+  font-size: 0.81rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+}
+
+.price-stamp {
+  text-align: right;
+  min-width: 130px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  padding: 0.45rem 0.75rem;
+}
+
+.price-stamp .stamp-label {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  display: block;
+}
+
+.price-stamp .stamp-val {
+  font-family: var(--font-mono);
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--gold-light);
+}
+
+.asset-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.65rem;
+  margin: 1.05rem 0;
+  padding: 0.9rem;
+  background: var(--bg-surface);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-hairline);
+}
+
+@media (max-width: 780px) {
+  .asset-metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.metric-box {
+  padding-right: 0.5rem;
+  border-right: 1px solid var(--border-hairline);
+}
+
+.metric-box:last-child {
+  border-right: none;
+}
+
+.metric-box .m-label {
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.metric-box .m-val {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.metric-box .m-val.emerald {
+  color: var(--emerald-light);
+}
+
+.metric-box .m-val.gold {
+  color: var(--gold-light);
+}
+
+.metric-box .m-val.cyan {
+  color: var(--navy-b3);
+}
+
+.channel-mix-strip {
+  margin: 0.85rem 0;
+}
+
+.channel-mix-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+
+.channel-mix-bar {
+  display: flex;
+  height: 6px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--bg-surface);
+}
+
+.mix-seg-ancora {
+  background: var(--emerald-primary);
+}
+
+.mix-seg-flex {
+  background: var(--gold-primary);
+}
+
+.mix-seg-curta {
+  background: var(--navy-b3);
+}
+
+.funding-bar-wrap {
+  margin: 0.9rem 0;
+  padding: 0.75rem 0.9rem;
+  background: var(--bg-card-alt);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+}
+
+.funding-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.77rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.4rem;
+}
+
+.progress-track {
+  height: 6px;
+  background: var(--bg-surface);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-primary) 0%, var(--emerald-primary) 100%);
+  border-radius: 999px;
+}
+
+.asset-highlights {
+  list-style: none;
+  margin: 0.85rem 0 0.95rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.38rem;
+  font-size: 0.81rem;
+  color: var(--text-secondary);
+}
+
+.asset-highlights li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.asset-highlights li::before {
+  content: "▪";
+  color: var(--gold-primary);
+  font-size: 0.9rem;
+}
+
+.deed-metadata-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 0.71rem;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-hairline);
+  margin-bottom: 0.95rem;
+}
+
+.asset-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+/* Botões Institucionais */
+.btn {
+  padding: 0.6rem 1.05rem;
+  border-radius: var(--radius-xs);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: all 0.16s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.btn-primary {
+  background: linear-gradient(180deg, #d1ae68 0%, #b58e44 100%);
+  color: #080d16;
+  border-color: #e2c585;
+  font-weight: 700;
+  box-shadow: 0 2px 10px rgba(197, 160, 89, 0.25);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+}
+
+.btn-cyan {
+  background: linear-gradient(180deg, #38bdf8 0%, #0284c7 100%);
+  color: #04101c;
+  border-color: #7dd3fc;
+  font-weight: 700;
+}
+
+.btn-cyan:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+
+.btn-secondary:hover {
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+}
+
+/* 10. Simulador & Checkout Pick & Go Sticky Panels */
+.simulator-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  position: sticky;
+  top: 1.25rem;
+  box-shadow: var(--shadow-elevated);
+}
+
+.simulator-panel h3 {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-top: 0.35rem;
+  margin-bottom: 0.25rem;
+}
+
+.tranche-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+}
+
+.tranche-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.35rem 0.25rem;
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  transition: all 0.14s ease;
+}
+
+.tranche-btn:hover,
+.tranche-btn.active {
+  border-color: var(--gold-primary);
+  color: var(--gold-light);
+  background: var(--gold-bg);
+}
+
+.sim-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 0.95rem;
+}
+
+.sim-box-cash {
+  margin-top: 1.1rem;
+  padding: 0.95rem;
+  background: var(--emerald-bg);
+  border: 1px solid var(--emerald-border);
+  border-left: 3px solid var(--emerald-primary);
+  border-radius: var(--radius-xs);
+}
+
+.sim-box-valuation {
+  margin-top: 0.85rem;
+  padding: 0.95rem;
+  background: var(--gold-bg);
+  border: 1px dashed var(--border-gold);
+  border-left: 3px solid var(--gold-primary);
+  border-radius: var(--radius-xs);
+}
+
+.sim-box-split {
+  margin-top: 0.85rem;
+  padding: 0.95rem;
+  background: var(--navy-b3-bg);
+  border: 1px solid var(--navy-b3-border);
+  border-left: 3px solid var(--navy-b3);
+  border-radius: var(--radius-xs);
+}
+
+.sim-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.8rem;
+  padding: 0.28rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+.sim-row:last-of-type {
+  border-bottom: none;
+}
+
+.sim-row strong {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+/* QR Code Pass Voucher */
+.qr-voucher-box {
+  margin-top: 1rem;
+  padding: 1.1rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.qr-code-visual {
+  width: 124px;
+  height: 124px;
+  margin: 0.65rem auto;
+  padding: 8px;
+  background: #ffffff;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tabelas e Relatórios Institucionais */
+.section-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-md);
+  padding: 1.45rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.section-card h2 {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.section-desc {
+  color: var(--text-secondary);
+  font-size: 0.84rem;
+  margin-bottom: 1.2rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.78rem 0.9rem;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+th {
+  color: var(--text-muted);
+  font-size: 0.67rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  background: var(--bg-surface);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+tr:hover td {
+  background: rgba(197, 160, 89, 0.03);
+}
+
+.builders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.gate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 1.25rem;
+}
+
+.gate-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-hairline);
+  border-radius: var(--radius-xs);
+  padding: 1.05rem;
+}
+
+/* Modal Nativo de Encaminhamento Zuvia / Boleta (<dialog closedby="any">) */
+dialog {
+  margin: auto;
+  background: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-md);
+  padding: 0;
+  max-width: 590px;
+  width: calc(100% - 2rem);
+  box-shadow: var(--shadow-elevated);
+}
+
+dialog::backdrop {
+  background-color: rgba(4, 8, 16, 0.82);
+  backdrop-filter: blur(5px);
+}
+
+.dialog-inner {
+  padding: 1.6rem;
+}
+
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.05rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-hairline);
+}
+
+.close-btn {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  border-radius: var(--radius-xs);
+  padding: 0.3rem 0.65rem;
+  cursor: pointer;
+}
+
+.toast-feedback {
+  margin-top: 1rem;
+  padding: 0.9rem 1.05rem;
+  border-radius: var(--radius-xs);
+  background: var(--emerald-bg);
+  border: 1px solid var(--emerald-border);
+  border-left: 3px solid var(--emerald-primary);
+  color: var(--text-primary);
+  font-size: 0.82rem;
+}
+
+.institutional-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-hairline);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.74rem;
+  color: var(--text-muted);
+}

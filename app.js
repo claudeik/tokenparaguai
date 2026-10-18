@@ -1,31 +1,18 @@
 /**
- * Controlador Principal — Portal Público EPYX Wealth (v0.2)
- * Produto A: Tokenização de Ativos Reais (Zuvia / CVM Res. 88 / Infraestrutura B3)
- * Produto B: Pick & Go Cross-Border (Portal Paraguai / Cambio Real Pix Split / Correios Remessa Conforme)
+ * Controlador Institucional — Mesa de Ativos Imobiliários Tokenizados Assunção (Zuvia + CVM 88 + B3)
+ * Implementa as diretrizes da ESPECIFICACAO_IMOBILIARIO_ZUVIA.md com design Private Banking
  */
 
 (function () {
   const data = window.REAL_ESTATE_DATA;
-  const epyx = window.EPYX_PORTAL_DATA;
   let currentModalAsset = data.ativos[0];
 
-  // Carrinho inicial do Produto B (Pick & Go Multi-Loja)
-  let pickGoCart = [
-    { prodId: 'PROD-02', qtd: 1 },
-    { prodId: 'PROD-03', qtd: 1 }
-  ];
-
-  // Utilitários de formatação monetária determinística
   function fmtBrl(val) {
     return Number(val).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
   }
 
   function fmtUsd(val) {
     return 'US$ ' + Number(val).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  }
-
-  function fmtPyg(val) {
-    return 'G$ ' + Math.round(Number(val)).toLocaleString('pt-BR');
   }
 
   function fmtInt(val) {
@@ -46,7 +33,7 @@
     renderAuditLogs();
   }
 
-  // 1. Alternância de Tema Institucional (Dark <-> Private Wealth Light)
+  // Alternância de Tema (Institutional Dark <-> Swiss Private Wealth Ivory)
   function initThemeToggle() {
     const btn = document.getElementById('btnToggleTheme');
     const label = document.getElementById('themeToggleLabel');
@@ -62,108 +49,24 @@
     });
   }
 
-  // 2. Internacionalização PT-BR / ES-PY (Seção 2.2 e 9)
-  function initI18n() {
-    const langSelect = document.getElementById('iamLangSelect');
-    if (!langSelect) return;
-
-    const dict = {
-      PT: {
-        heroTitle: 'EPYX Wealth — Ativos Reais Tokenizados & Comércio Cross-Border',
-        heroSubtitle:
-          'Plataforma tecnológica e operacional binacional (Brasil–Paraguai) sob arquitetura segregada: vitrine de investimentos em ativos imobiliários em Assunção distribuídos pela <strong>Zuvia (Res. CVM 88 / B3)</strong> e sistema <strong>Pick &amp; Go Cross-Border</strong> em Ciudad del Este operado com o <strong>Portal Paraguai</strong>, <strong>Cambio Real</strong> e <strong>Correios (Remessa Conforme)</strong>.',
-        doorATitle: 'Investir em Ativos Reais (Assunção)',
-        doorBTitle: 'Comprar no Paraguai · Pick & Go'
-      },
-      ES: {
-        heroTitle: 'EPYX Wealth — Activos Reales Tokenizados & Comercio Cross-Border',
-        heroSubtitle:
-          'Plataforma tecnológica y operativa binacional (Brasil–Paraguay) bajo arquitectura segregada: vitrina de inversión inmobiliaria en Asunción distribuida por <strong>Zuvia (Res. CVM 88 / B3)</strong> y sistema <strong>Pick &amp; Go Cross-Border</strong> en Ciudad del Este operado junto a <strong>Portal Paraguai</strong>, <strong>Cambio Real</strong> y <strong>Correios (Remessa Conforme)</strong>.',
-        doorATitle: 'Invertir en Activos Reales (Asunción)',
-        doorBTitle: 'Comprar en Paraguay · Pick & Go'
-      }
-    };
-
-    langSelect.addEventListener('change', () => {
-      const lang = langSelect.value;
-      const t = dict[lang] || dict.PT;
-      document.getElementById('i18nHeroTitle').textContent = t.heroTitle;
-      document.getElementById('i18nHeroSubtitle').innerHTML = t.heroSubtitle;
-      document.getElementById('i18nDoorATitle').textContent = t.doorATitle;
-      document.getElementById('i18nDoorBTitle').textContent = t.doorBTitle;
-      registrarEventoAuditoria(
-        'ContaUnicaIAM',
-        'ALTERACAO_IDIOMA_PORTAL',
-        `Usuario(idioma=${lang})`,
-        `Interface alternada para ${lang === 'ES' ? 'Español (ES-PY)' : 'Português (PT-BR)'} mantendo cotações R$, US$ e G$.`
-      );
-    });
-  }
-
-  // 3. Controle de Papéis e Permissões RBAC (Seção 6)
-  function initRbacControl() {
-    const roleSelect = document.getElementById('iamRoleSelect');
-    if (!roleSelect) return;
-
-    function updateRbacBanner() {
-      const code = roleSelect.value;
-      const roleObj =
-        epyx.matrizPapeisRbac.find((r) => r.codigo === code) || epyx.matrizPapeisRbac[0];
-      const banner = document.getElementById('rbacActiveBanner');
-
-      banner.innerHTML = `
-        <div>
-          <span class="badge badge-gold" style="margin-right: 0.45rem;">CONTA ÚNICA IAM · PERFIL ATIVO: ${roleObj.nome}</span>
-          <span><strong>Produto A:</strong> ${roleObj.acessoProdutoA} &nbsp;|&nbsp; <strong>Produto B:</strong> ${roleObj.acessoProdutoB}</span>
-        </div>
-        <div class="mono" style="font-size: 0.72rem; color: var(--emerald-light);">
-          🔒 ${roleObj.restricaoSeguranca}
-        </div>
-      `;
-    }
-
-    roleSelect.addEventListener('change', () => {
-      updateRbacBanner();
-      renderPortfolioAndB3();
-    });
-    updateRbacBanner();
-  }
-
-  // 4. Navegação de Abas + As Duas Portas (Porta A e Porta B)
-  function activateTab(tabId) {
+  // 1. Navegação de Módulos
+  function initTabs() {
     const buttons = document.querySelectorAll('.tab-btn');
     const panels = document.querySelectorAll('.tab-panel');
-    buttons.forEach((b) => b.classList.toggle('active', b.getAttribute('data-tab') === tabId));
-    panels.forEach((p) => p.classList.toggle('active', p.id === tabId));
 
-    // Destaca a Porta correspondente (Porta A = Investir, Porta B = Pick & Go)
-    const doorA = document.getElementById('doorCardA');
-    const doorB = document.getElementById('doorCardB');
-    if (doorA && doorB) {
-      const isPickGo = tabId.startsWith('tab-pickgo');
-      doorA.classList.toggle('active-door', !isPickGo);
-      doorB.classList.toggle('active-door', isPickGo);
-    }
-  }
-
-  function initTabsAndDoors() {
-    document.querySelectorAll('.tab-btn').forEach((btn) => {
+    buttons.forEach((btn) => {
       btn.addEventListener('click', () => {
-        activateTab(btn.getAttribute('data-tab'));
-      });
-    });
-
-    document.querySelectorAll('[data-jump-tab]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-jump-tab');
-        activateTab(target);
-        const navEl = document.querySelector('.nav-tabs');
-        if (navEl) navEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const target = btn.getAttribute('data-tab');
+        buttons.forEach((b) => b.classList.remove('active'));
+        panels.forEach((p) => p.classList.remove('active'));
+        btn.classList.add('active');
+        const panel = document.getElementById(target);
+        if (panel) panel.classList.add('active');
       });
     });
   }
 
-  // 5. Renderização da Vitrine do Produto A (Ofertas Assunção)
+  // 2. Renderização dos Dossiês de Ativos no Marketplace
   function renderMarketplaceCards() {
     const zona = document.getElementById('filterZona').value;
     const construtora = document.getElementById('filterConstrutora').value;
@@ -181,7 +84,7 @@
       container.innerHTML = `
         <div class="section-card">
           <h3>Nenhuma série encontrada para os parâmetros selecionados</h3>
-          <p class="section-desc">Restaure os filtros de Eixo Imobiliário ou Incorporadora para visualizar todas as ofertas aprovadas.</p>
+          <p class="section-desc">Restaure os filtros de Eixo Imobiliário ou Incorporadora para visualizar todas as emissões.</p>
         </div>
       `;
       return;
@@ -201,7 +104,7 @@
                   <span class="badge badge-gold">${ativo.zona}</span>
                   <span class="badge badge-rating">${ativo.construtoraNome} · RATING ${ativo.ratingConstrutora}</span>
                   <span class="badge ${gateOk ? 'badge-rating' : 'badge-warning'}">
-                    ${gateOk ? 'GATE 6.2: MATRÍCULA AVERBADA' : 'GATE 6.2: RETENÇÃO ESCROW'}
+                    ${gateOk ? 'GATE 6.2: MATRÍCULA AVERBADA' : 'GATE 6.2: RETENÇÃO ESCROW ATIVA'}
                   </span>
                 </div>
                 <h3 class="asset-title">${ativo.nome}</h3>
@@ -215,7 +118,7 @@
 
             <div class="asset-metrics">
               <div class="metric-box">
-                <span class="m-label">Renda Projetada (US$)</span>
+                <span class="m-label">Yield Alvo Locação (US$)</span>
                 <span class="m-val emerald">${ativo.rendaProjetadaUsdAa.toFixed(2).replace('.', ',')}% a.a.</span>
               </div>
               <div class="metric-box">
@@ -223,7 +126,7 @@
                 <span class="m-val gold">${ativo.pisoOpCoUsdAa.toFixed(2).replace('.', ',')}% a.a.</span>
               </div>
               <div class="metric-box">
-                <span class="m-label">Prédio Inteiro (Matrícula Única)</span>
+                <span class="m-label">Lastro Físico (Matrícula Única)</span>
                 <span class="m-val">${ativo.unidadesTotal} unid. · ${fmtInt(ativo.areaTotalM2)} m²</span>
               </div>
               <div class="metric-box">
@@ -236,21 +139,22 @@
               </div>
             </div>
 
+            <!-- Barra de Alocação de Canais da OpCo -->
             <div class="channel-mix-strip">
               <div class="channel-mix-header">
-                <span>MIX DE LOCAÇÃO OPCO (OCUPAÇÃO ALVO: ${ativo.ocupacaoAlvoPct}% · ADR: US$ ${ativo.adrMedioUsd})</span>
+                <span>DISTRIBUIÇÃO DE CONTRATOS DA OPCO (OCUPAÇÃO ALVO: ${ativo.ocupacaoAlvoPct}% · ADR: US$ ${ativo.adrMedioUsd})</span>
                 <span class="mono">Âncora ${ativo.mixCanais.ancora}% · Flex ${ativo.mixCanais.flex}% · Curta ${ativo.mixCanais.curta}%</span>
               </div>
               <div class="channel-mix-bar">
-                <div class="mix-seg-ancora" style="width: ${ativo.mixCanais.ancora}%;"></div>
-                <div class="mix-seg-flex" style="width: ${ativo.mixCanais.flex}%;"></div>
-                <div class="mix-seg-curta" style="width: ${ativo.mixCanais.curta}%;"></div>
+                <div class="mix-seg-ancora" style="width: ${ativo.mixCanais.ancora}%;" title="Âncora Corporativo 6-12m"></div>
+                <div class="mix-seg-flex" style="width: ${ativo.mixCanais.flex}%;" title="Estadia Flex 30-90d"></div>
+                <div class="mix-seg-curta" style="width: ${ativo.mixCanais.curta}%;" title="Curta Temporada"></div>
               </div>
             </div>
 
             <div class="funding-bar-wrap">
               <div class="funding-labels">
-                <span>Oferta na Zuvia (${ativo.statusCiclo}): <strong>${fmtBrl(ativo.valorCaptadoBrl)}</strong> de ${fmtBrl(ativo.valorAlvoBrl)}</span>
+                <span>Estágio da Oferta (${ativo.statusCiclo}): <strong>${fmtBrl(ativo.valorCaptadoBrl)}</strong> subscritos de ${fmtBrl(ativo.valorAlvoBrl)}</span>
                 <span class="mono"><strong>${pctCaptado}%</strong> (${fmtInt(ativo.qtdTokensEmitidos)} / ${fmtInt(ativo.qtdTokensTotal)} CIC)</span>
               </div>
               <div class="progress-track">
@@ -263,16 +167,16 @@
             </ul>
 
             <div class="deed-metadata-footer mono">
-              <span>PROPCO PY: ${ativo.propCoNome}</span>
+              <span>VEÍCULO PROPCO: ${ativo.propCoNome}</span>
               <span>REGISTRO: ${ativo.matriculaPy}</span>
             </div>
 
             <div class="asset-actions">
               <button type="button" class="btn btn-primary btn-open-subscribe" data-id="${ativo.id}">
-                Entrar na Zuvia (SSO · Subscrição Regulada CVM 88)
+                Emitir Ordem de Subscrição Primária (R$ 25,00 / CIC)
               </button>
               <button type="button" class="btn btn-secondary btn-simular-ativo" data-id="${ativo.id}">
-                Simular Fluxo de Caixa
+                Carregar na Mesa de Estruturação
               </button>
             </div>
           </article>
@@ -297,7 +201,7 @@
     });
   }
 
-  // 6. Simulador Determinístico do Produto A (com opção de recebimento em R$ Pix ou G$ Guaranis)
+  // 3. Mesa de Simulação Determinística (Seções 0, 2 e 8)
   function initSimulator() {
     const ativoSelect = document.getElementById('simAtivoSelect');
     const cenarioSelect = document.getElementById('simCenarioSelect');
@@ -319,6 +223,7 @@
 
     cenarioSelect.value = 'CEN-BASE-IG';
 
+    // Botões rápidos de tranche institucional
     const trancheBtns = document.querySelectorAll('.tranche-btn');
     trancheBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -329,14 +234,7 @@
       });
     });
 
-    [
-      'simAtivoSelect',
-      'simValorBrl',
-      'simCambioBrl',
-      'simAnos',
-      'simMoedaRecebimento',
-      'simCenarioSelect'
-    ].forEach((id) => {
+    ['simAtivoSelect', 'simValorBrl', 'simCambioBrl', 'simAnos', 'simCenarioSelect'].forEach((id) => {
       document.getElementById(id).addEventListener('input', updateSimulator);
       document.getElementById(id).addEventListener('change', updateSimulator);
     });
@@ -349,26 +247,22 @@
     const valorBrl = Math.max(25, Number(document.getElementById('simValorBrl').value) || 25);
     const cambioBrl = Math.max(1, Number(document.getElementById('simCambioBrl').value) || 5.65);
     const anos = Math.max(1, Math.min(20, Number(document.getElementById('simAnos').value) || 5));
-    const moedaRec = document.getElementById('simMoedaRecebimento').value;
     const cenarioId = document.getElementById('simCenarioSelect').value;
 
     const ativo = data.ativos.find((a) => a.id === ativoId) || data.ativos[0];
-    const cenario =
-      data.cenariosIlustrativos.find((c) => c.id === cenarioId) || data.cenariosIlustrativos[0];
+    const cenario = data.cenariosIlustrativos.find((c) => c.id === cenarioId) || data.cenariosIlustrativos[0];
 
     const qtdTokens = Math.floor(valorBrl / ativo.precoTokenBrl);
     const capitalEfetivoBrl = qtdTokens * ativo.precoTokenBrl;
     const capitalUsd = capitalEfetivoBrl / cambioBrl;
 
+    // (A) Renda Distribuível de Caixa (US$ convertida para Pix R$)
     const rendaAnualUsd = capitalUsd * (ativo.rendaProjetadaUsdAa / 100);
-    const rendaMensalUsd = rendaAnualUsd / 12;
-    const rendaMensalBrl = rendaMensalUsd * cambioBrl;
-    const rendaMensalPyg = rendaMensalUsd * data.meta.cambioReferencia.usdPyg;
-
+    const rendaMensalBrl = (rendaAnualUsd / 12) * cambioBrl;
     const pisoAnualBrl = capitalUsd * (ativo.pisoOpCoUsdAa / 100) * cambioBrl;
     const rendaTotalHorizonteBrl = rendaAnualUsd * anos * cambioBrl;
-    const rendaTotalHorizontePyg = rendaAnualUsd * anos * data.meta.cambioReferencia.usdPyg;
 
+    // (B) Variação Contábil de Valor Justo [CENÁRIO ILUSTRATIVO · NÃO PROMETIDO]
     const fatorValorizacao = Math.pow(1 + cenario.taxaValorizacaoAnualUsd / 100, anos);
     const patrimonioFinalUsd = capitalUsd * fatorValorizacao;
     const patrimonioFinalBrl = patrimonioFinalUsd * cambioBrl;
@@ -376,37 +270,18 @@
 
     document.getElementById('simOutTokens').textContent = `${fmtInt(qtdTokens)} CIC (${fmtBrl(capitalEfetivoBrl)})`;
     document.getElementById('simOutCapitalUsd').textContent = fmtUsd(capitalUsd);
-
-    if (moedaRec === 'PYG') {
-      document.getElementById('simOutRendaMensal').textContent = `${fmtPyg(rendaMensalPyg)} / mês (${fmtUsd(rendaMensalUsd)})`;
-      document.getElementById('simOutRendaTotalHorizonte').textContent = `${fmtPyg(rendaTotalHorizontePyg)} (${anos} anos)`;
-    } else {
-      document.getElementById('simOutRendaMensal').textContent = `${fmtBrl(rendaMensalBrl)} / mês (Pix)`;
-      document.getElementById('simOutRendaTotalHorizonte').textContent = `${fmtBrl(rendaTotalHorizonteBrl)} (${anos} anos)`;
-    }
-
+    document.getElementById('simOutRendaMensal').textContent = `${fmtBrl(rendaMensalBrl)} / mês`;
     document.getElementById('simOutPisoAnual').textContent = `${ativo.pisoOpCoUsdAa.toFixed(2).replace('.', ',')}% a.a. (${fmtBrl(pisoAnualBrl)}/ano)`;
+    document.getElementById('simOutRendaTotalHorizonte').textContent = `${fmtBrl(rendaTotalHorizonteBrl)} (${anos} anos)`;
+
     document.getElementById('simOutPatrimonioFinal').textContent = fmtBrl(patrimonioFinalBrl);
     document.getElementById('simOutGanhoCapital').textContent = `+ ${fmtBrl(ganhoCapitalIlustrativoBrl)} (${cenario.taxaValorizacaoAnualUsd.toFixed(1).replace('.', ',')}% a.a.)`;
     document.getElementById('simOutAvisoCenario').textContent = cenario.avisoRegulatorio;
     document.getElementById('headerCambioBrl').textContent = 'R$ ' + cambioBrl.toFixed(4).replace('.', ',');
   }
 
-  // 7. Incorporadoras & Pipeline de Admissão de Ativos (Seção 4.3)
-  function renderConstrutorasAndPipeline() {
-    const pipeBody = document.getElementById('pipelineAtivosTableBody');
-    pipeBody.innerHTML = epyx.pipelineAtivosProdutoA
-      .map(
-        (p) => `
-        <tr>
-          <td><strong>${p.etapa}</strong></td>
-          <td>${p.descricao}</td>
-          <td><span class="badge badge-rating">${p.status}</span></td>
-        </tr>
-      `
-      )
-      .join('');
-
+  // 4. Renderização do Comitê de Crédito das Incorporadoras
+  function renderConstrutoras() {
     const container = document.getElementById('buildersContainer');
     container.innerHTML = data.construtoras
       .map(
@@ -458,7 +333,7 @@
       .join('');
   }
 
-  // 8. Gates 6.2 e 6.3 (PropCo / OpCo)
+  // 5. Gate 6.2 (Matrícula Única) & Gate 6.3 (Distribuição Mensal Pix com Dupla Alçada)
   function initGatesPropCoOpCo() {
     const select = document.getElementById('gate62AtivoSelect');
     select.innerHTML = data.ativos
@@ -485,7 +360,7 @@
       renderMarketplaceCards();
       document.getElementById('gate62Feedback').innerHTML = `
         <div class="toast-feedback">
-          <strong>AVERBAÇÃO CONFIRMADA (DGRP ASSUNÇÃO):</strong> Certidão de Matrícula Única validada em nome de <strong>${ativo.propCoNome}</strong>. O Gate 6.2 para a série <strong>${ativo.simbolo}</strong> encontra-se habilitado.
+          <strong>AVERBAÇÃO CONFIRMADA (DGRP ASSUNÇÃO):</strong> Certidão de Matrícula Única validada em nome de <strong>${ativo.propCoNome}</strong>. O Gate 6.2 para a série <strong>${ativo.simbolo}</strong> encontra-se habilitado para liquidação contratual.
         </div>
       `;
     });
@@ -503,8 +378,8 @@
           'Ordem de remessa rejeitada: Certidão de Matrícula Única pendente de averbação definitiva na PropCo PY.'
         );
         document.getElementById('gate62Feedback').innerHTML = `
-          <div class="toast-feedback" style="background: var(--crimson-bg); border-color: var(--crimson-alert); border-left-color: var(--crimson-alert);">
-            <strong>ORDEM REJEITADA PELO GATE 6.2 (Seção 6.2):</strong> Desembolso bloqueado para a série <strong>${ativo.simbolo}</strong>. Os recursos permanecem retidos até a anexação da certidão de registro da matrícula única em nome de <strong>${ativo.propCoNome}</strong>.
+          <div class="toast-feedback" style="background: var(--crimson-bg); border-color: var(--crimson-border); border-left-color: var(--crimson-alert);">
+            <strong>ORDEM REJEITADA PELO GATE 6.2 (Seção 6.2):</strong> Desembolso bloqueado para a série <strong>${ativo.simbolo}</strong>. Os recursos permanecem retidos em conta segregada até a anexação da certidão de registro da matrícula única em nome de <strong>${ativo.propCoNome}</strong>.
           </div>
         `;
       } else {
@@ -512,16 +387,17 @@
           'ServicoFinanceiro (Câmbio BR → PY)',
           'REMESSA_AUTORIZADA_GATE_6_2',
           `Ativo(${ativo.simbolo})`,
-          `Remessa cambial autorizada para ${ativo.propCoNome} mediante comprovação de Matrícula Única.`
+          `Remessa cambial autorizada para ${ativo.propCoNome} mediante comprovação de Matrícula Única e hash SHA-256.`
         );
         document.getElementById('gate62Feedback').innerHTML = `
           <div class="toast-feedback">
-            <strong>CONDIÇÃO PRECEDENTE CUMPRIDA (GATE 6.2):</strong> Titularidade da Matrícula Única verificada em nome de <strong>${ativo.propCoNome}</strong>. Ordem de remessa autorizada.
+            <strong>CONDIÇÃO PRECEDENTE CUMPRIDA (GATE 6.2):</strong> Titularidade da Matrícula Única verificada em nome de <strong>${ativo.propCoNome}</strong>. Ordem de fechamento cambial e transferência autorizada.
           </div>
         `;
       }
     });
 
+    // Gate 6.3: Dupla Assinatura Financeiro + Compliance
     document.getElementById('btnExecutarDistribuicaoPix').addEventListener('click', () => {
       const finOk = document.getElementById('chkAprovFinanceiro').checked;
       const compOk = document.getElementById('chkAprovCompliance').checked;
@@ -529,8 +405,8 @@
 
       if (!finOk || !compOk) {
         feedbackEl.innerHTML = `
-          <div class="toast-feedback" style="background: var(--crimson-bg); border-color: var(--crimson-alert); border-left-color: var(--crimson-alert);">
-            <strong>ALÇADA INCOMPLETA (Seções 6.3 e 9):</strong> A instrução de pagamento de proventos exige a dupla assinatura eletrônica (Diretoria Financeira + Oficial de Compliance).
+          <div class="toast-feedback" style="background: var(--crimson-bg); border-color: var(--crimson-border); border-left-color: var(--crimson-alert);">
+            <strong>ALÇADA INCOMPLETA (Seções 6.3 e 9):</strong> A instrução de pagamento de proventos via Pix exige a dupla assinatura eletrônica (Diretoria Financeira + Oficial de Compliance).
           </div>
         `;
         return;
@@ -539,14 +415,14 @@
       const resumo = data.operacaoMensalOpCo.resumoPropCo;
       registrarEventoAuditoria(
         'ServicoDistribuicao (Alçada Dupla)',
-        'LIQUIDACAO_PROVENTOS_AGENTE_PAGADOR',
+        'LIQUIDACAO_PROVENTOS_PIX_ZUVIA',
         'Distribuicao(Out/2026 · ZUV-WTC03)',
         `Liquidado lote de ${fmtBrl(resumo.caixaDistribuivelLiquidoBrl)} (R$ ${resumo.proventoPorTokenBrl.toFixed(4).replace('.', ',')}/CIC) para 550.000 tokens conciliados no Ledger B3.`
       );
 
       feedbackEl.innerHTML = `
         <div class="toast-feedback">
-          <strong>LOTE DE PROVENTOS LIQUIDADO (ZUVIA / B3):</strong> Caixa líquido distribuível de <strong>${fmtUsd(resumo.caixaDistribuivelLiquidoUsd)}</strong> convertido a R$ 5,6500 = <strong>${fmtBrl(resumo.caixaDistribuivelLiquidoBrl)}</strong> creditado aos investidores registrados no Ledger B3.
+          <strong>LOTE PIX LIQUIDADO COM SUCESSO (ZUVIA / B3):</strong> Caixa líquido distribuível de <strong>${fmtUsd(resumo.caixaDistribuivelLiquidoUsd)}</strong> convertido a R$ 5,6500 = <strong>${fmtBrl(resumo.caixaDistribuivelLiquidoBrl)}</strong> (R$ ${resumo.proventoPorTokenBrl.toFixed(4).replace('.', ',')} por CIC) creditado aos investidores registrados no Ledger B3.
         </div>
       `;
     });
@@ -570,7 +446,7 @@
         <strong class="mono" style="font-size: 0.76rem;">${ativo.matriculaPy}</strong>
       </div>
       <div class="sim-row">
-        <span>Saldo em Conta Segregada Zuvia:</span>
+        <span>Saldo em Conta Segregada da Oferta:</span>
         <strong>${fmtBrl(ativo.valorCaptadoBrl)}</strong>
       </div>
       <div class="sim-row">
@@ -630,46 +506,33 @@
       .join('');
   }
 
-  // 9. Minha Posição (Leitura API Zuvia com isolamento RBAC Seção 6) & Livro B3
+  // 6. Custódia do Investidor, Laudos NAV & Mercado Subsequente B3/Zuvia
   function renderPortfolioAndB3() {
     const pBody = document.getElementById('portfolioTableBody');
-    const currentRole = document.getElementById('iamRoleSelect').value;
-
-    // Seção 6: "dados de investidor regulado não são acessíveis ao perfil Operador nem Lojista"
-    if (currentRole === 'OPERADOR' || currentRole === 'LOJISTA') {
-      pBody.innerHTML = `
-        <tr>
-          <td colspan="8" style="text-align: center; padding: 1.5rem; color: var(--crimson-alert);">
-            <strong>🔒 ACESSO RESTRITO POR SEGREGAÇÃO RBAC (SEÇÃO 6):</strong> O perfil <code>${currentRole}</code> (Produto B — Pick &amp; Go) não possui permissão de leitura sobre dados de posição de investidores regulados do Produto A. Altere o Perfil IAM no topo para <strong>Investidor BR/PY</strong> ou <strong>Compliance</strong>.
-          </td>
-        </tr>
-      `;
-    } else {
-      pBody.innerHTML = data.carteiraInvestidorPadrao.posicoes
-        .map((pos) => {
-          const valorPatrimonialTotal = pos.qtdTokens * pos.navLaudoPorTokenBrl;
-          const valorMercadoB3Total = pos.qtdTokens * pos.ultimoPrecoB3Brl;
-          return `
-            <tr>
-              <td><span class="badge badge-ticker">${pos.simbolo}</span></td>
-              <td><strong>${pos.nomeAtivo}</strong></td>
-              <td class="mono">${fmtInt(pos.qtdTokens)} CIC</td>
-              <td class="mono">${fmtBrl(pos.precoMedioAquisicaoBrl)}</td>
-              <td class="mono">
-                <strong>${fmtBrl(pos.navLaudoPorTokenBrl)}</strong>
-                <span style="display:block; font-size:0.72rem; color:var(--text-muted);">Patrimônio NAV: ${fmtBrl(valorPatrimonialTotal)}</span>
-              </td>
-              <td class="mono" style="color: var(--navy-b3);">
-                <strong>${fmtBrl(pos.ultimoPrecoB3Brl)}</strong>
-                <span style="display:block; font-size:0.72rem; color:var(--text-muted);">Marcação B3: ${fmtBrl(valorMercadoB3Total)}</span>
-              </td>
-              <td class="mono" style="color: var(--emerald-light);"><strong>${fmtBrl(pos.proventoMensalEstimadoBrl)}</strong></td>
-              <td class="mono" style="font-size: 0.74rem;">${pos.idExternoLedgerB3}</td>
-            </tr>
-          `;
-        })
-        .join('');
-    }
+    pBody.innerHTML = data.carteiraInvestidorPadrao.posicoes
+      .map((pos) => {
+        const valorPatrimonialTotal = pos.qtdTokens * pos.navLaudoPorTokenBrl;
+        const valorMercadoB3Total = pos.qtdTokens * pos.ultimoPrecoB3Brl;
+        return `
+          <tr>
+            <td><span class="badge badge-ticker">${pos.simbolo}</span></td>
+            <td><strong>${pos.nomeAtivo}</strong></td>
+            <td class="mono">${fmtInt(pos.qtdTokens)} CIC</td>
+            <td class="mono">${fmtBrl(pos.precoMedioAquisicaoBrl)}</td>
+            <td class="mono">
+              <strong>${fmtBrl(pos.navLaudoPorTokenBrl)}</strong>
+              <span style="display:block; font-size:0.72rem; color:var(--text-muted);">Patrimônio NAV: ${fmtBrl(valorPatrimonialTotal)}</span>
+            </td>
+            <td class="mono" style="color: var(--navy-b3);">
+              <strong>${fmtBrl(pos.ultimoPrecoB3Brl)}</strong>
+              <span style="display:block; font-size:0.72rem; color:var(--text-muted);">Marcação B3: ${fmtBrl(valorMercadoB3Total)}</span>
+            </td>
+            <td class="mono" style="color: var(--emerald-light);"><strong>${fmtBrl(pos.proventoMensalEstimadoBrl)}</strong></td>
+            <td class="mono" style="font-size: 0.74rem;">${pos.idExternoLedgerB3}</td>
+          </tr>
+        `;
+      })
+      .join('');
 
     const obBody = document.getElementById('orderBookTableBody');
     obBody.innerHTML = data.livroOfertasB3
@@ -698,10 +561,10 @@
             <span class="badge badge-gold">LAUDO NAV: ${fmtBrl(a.navLaudoPorTokenBrl)} / CIC</span>
           </div>
           <div style="font-size:0.8rem; color:var(--text-secondary);">
-            Avaliador Independente: <strong>${a.avaliadorLaudo}</strong> · Valor Justo: <strong>${fmtUsd(a.precoAquisicaoUsd)}</strong>
+            Avaliador Credenciado: <strong>${a.avaliadorLaudo}</strong> · Valor Justo do Imóvel: <strong>${fmtUsd(a.precoAquisicaoUsd)}</strong>
           </div>
           <div class="mono" style="font-size:0.7rem; color:var(--text-muted); margin-top:0.35rem; word-break:break-all;">
-            Hash SHA-256: ${a.hashLaudo}
+            Assinatura Criptográfica (Seção 4): ${a.hashLaudo}
           </div>
         </div>
       `
@@ -709,406 +572,8 @@
       .join('');
   }
 
-  // 10. PRODUTO B: PICK & GO CROSS-BORDER (Catálogo 5 Lojas CDE, Carrinho Multi-Loja, Split Cambio Real, Correios & QR Code)
-  function initPickAndGoModule() {
-    const filterLoja = document.getElementById('filterLojaPickGo');
-    const filterEntrega = document.getElementById('filterEntregaPickGo');
-
-    filterLoja.addEventListener('change', renderPickGoCatalog);
-    filterEntrega.addEventListener('change', renderPickGoCartAndSplit);
-
-    document.getElementById('btnPagarPixPickGo').addEventListener('click', executePickGoPixCheckout);
-
-    renderPickGoCatalog();
-    renderPickGoCartAndSplit();
-    renderPickGoOperatorAndInvoices();
-  }
-
-  function renderPickGoCatalog() {
-    const lojaFiltro = document.getElementById('filterLojaPickGo').value;
-    const container = document.getElementById('pickGoCatalogContainer');
-    const cambio = data.meta.cambioReferencia.usdBrl;
-
-    const produtos = epyx.pilotoPickAndGo.catalogoProdutos.filter((p) => {
-      if (lojaFiltro !== 'TODAS' && p.lojaId !== lojaFiltro) return false;
-      return true;
-    });
-
-    container.innerHTML = produtos
-      .map((p) => {
-        const precoBrl = p.precoUsd * cambio;
-        return `
-          <article class="asset-card" style="padding: 1.25rem;">
-            <div class="badge-row">
-              <span class="badge badge-ticker">${p.lojaNome}</span>
-              <span class="badge badge-gold">SKU: ${p.sku}</span>
-              <span class="badge ${p.elegivelCorreios ? 'badge-rating' : 'badge-warning'}">
-                ${p.elegivelCorreios ? 'Retirada CDE ou Correios Packet' : 'Somente Retirada Loja CDE'}
-              </span>
-            </div>
-            <h3 class="asset-title" style="font-size: 1.18rem;">${p.nome}</h3>
-            <p class="asset-address">📍 Ponto Fast-Exit: ${p.pontoRetirada}</p>
-
-            <div class="asset-metrics" style="grid-template-columns: repeat(3, 1fr); margin: 0.85rem 0;">
-              <div class="metric-box">
-                <span class="m-label">Preço Loja (US$)</span>
-                <span class="m-val gold">${fmtUsd(p.precoUsd)}</span>
-              </div>
-              <div class="metric-box">
-                <span class="m-label">Pix Cambio Real</span>
-                <span class="m-val emerald">${fmtBrl(precoBrl)}</span>
-              </div>
-              <div class="metric-box" style="border-right:none;">
-                <span class="m-label">Estoque Loja</span>
-                <span class="m-val">${p.estoque} unid.</span>
-              </div>
-            </div>
-
-            <button type="button" class="btn btn-cyan btn-add-pickgo" data-prod-id="${p.id}" style="width: 100%;">
-              + Adicionar ao Carrinho Pick &amp; Go
-            </button>
-          </article>
-        `;
-      })
-      .join('');
-
-    container.querySelectorAll('.btn-add-pickgo').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const prodId = btn.getAttribute('data-prod-id');
-        const item = pickGoCart.find((i) => i.prodId === prodId);
-        if (item) {
-          item.qtd += 1;
-        } else {
-          pickGoCart.push({ prodId, qtd: 1 });
-        }
-        renderPickGoCartAndSplit();
-      });
-    });
-  }
-
-  function renderPickGoCartAndSplit() {
-    const cartContainer = document.getElementById('cartItemsContainer');
-    const modalidade = document.getElementById('filterEntregaPickGo').value;
-    const cambio = data.meta.cambioReferencia.usdBrl;
-
-    if (pickGoCart.length === 0) {
-      cartContainer.innerHTML = `
-        <div class="gate-card" style="text-align:center; font-size:0.8rem; color:var(--text-muted);">
-          Carrinho vazio. Selecione produtos das 5 lojas do piloto ao lado.
-        </div>
-      `;
-    } else {
-      cartContainer.innerHTML = pickGoCart
-        .map((item) => {
-          const prod = epyx.pilotoPickAndGo.catalogoProdutos.find((p) => p.id === item.prodId);
-          if (!prod) return '';
-          const subUsd = prod.precoUsd * item.qtd;
-          return `
-            <div class="gate-card" style="padding: 0.65rem 0.8rem; display:flex; justify-content:space-between; align-items:center; gap:0.5rem;">
-              <div style="font-size:0.78rem;">
-                <strong>${item.qtd}x ${prod.nome}</strong>
-                <span style="display:block; font-size:0.7rem; color:var(--text-muted);">${prod.lojaNome} · ${fmtUsd(subUsd)}</span>
-              </div>
-              <button type="button" class="close-btn btn-remove-cart" data-prod-id="${prod.id}" title="Remover item">✕</button>
-            </div>
-          `;
-        })
-        .join('');
-
-      cartContainer.querySelectorAll('.btn-remove-cart').forEach((btn) => {
-        btn.addEventListener('click', () => {
-          const id = btn.getAttribute('data-prod-id');
-          pickGoCart = pickGoCart.filter((i) => i.prodId !== id);
-          renderPickGoCartAndSplit();
-        });
-      });
-    }
-
-    const subtotalUsd = pickGoCart.reduce((acc, item) => {
-      const prod = epyx.pilotoPickAndGo.catalogoProdutos.find((p) => p.id === item.prodId);
-      return acc + (prod ? prod.precoUsd * item.qtd : 0);
-    }, 0);
-
-    // Seção 5.7: Se Correios (Remessa Conforme), calcula Frete + Tributos antes do Pix
-    let freteUsd = 0;
-    let tributosUsd = 0;
-    if (modalidade === 'CORREIOS_REMESSA' && subtotalUsd > 0) {
-      freteUsd = 28.00;
-      tributosUsd = (subtotalUsd + freteUsd) * 0.445; // Estimativa explícita II + ICMS antes do Pix
-    }
-
-    const totalGeralUsd = subtotalUsd + freteUsd + tributosUsd;
-    const totalPixBrl = totalGeralUsd * cambio;
-
-    // Split sobre o valor dos produtos via Cambio Real (Seção 5.6)
-    const baseProdutosBrl = subtotalUsd * cambio;
-    const splitLojaBrl = baseProdutosBrl * 0.943;
-    const splitPortalBrl = baseProdutosBrl * 0.045;
-    const splitEpyxBrl = baseProdutosBrl * 0.012;
-
-    document.getElementById('pgSubtotalUsd').textContent = fmtUsd(subtotalUsd);
-    document.getElementById('pgFreteUsd').textContent =
-      modalidade === 'CORREIOS_REMESSA' ? fmtUsd(freteUsd) : 'US$ 0,00 (Retirada Expressa Loja)';
-    document.getElementById('pgTributosUsd').textContent =
-      modalidade === 'CORREIOS_REMESSA'
-        ? `${fmtUsd(tributosUsd)} (Repasse Remessa Conforme)`
-        : 'US$ 0,00 (Sujeito à Cota de Bagagem)';
-    document.getElementById('pgTotalPixBrl').textContent = fmtBrl(totalPixBrl);
-
-    document.getElementById('pgSplitLojaBrl').textContent = fmtBrl(splitLojaBrl);
-    document.getElementById('pgSplitPortalBrl').textContent = fmtBrl(splitPortalBrl);
-    document.getElementById('pgSplitEpyxBrl').textContent = fmtBrl(splitEpyxBrl);
-  }
-
-  function executePickGoPixCheckout() {
-    if (pickGoCart.length === 0) return;
-
-    const buyer = document.getElementById('pickGoBuyerName').value || 'Turista BR';
-    const visit = document.getElementById('pickGoVisitDate').value || 'Hoje · Turno 08h–18h';
-    const modalidade = document.getElementById('filterEntregaPickGo').value;
-    const cambio = data.meta.cambioReferencia.usdBrl;
-
-    const subtotalUsd = pickGoCart.reduce((acc, item) => {
-      const prod = epyx.pilotoPickAndGo.catalogoProdutos.find((p) => p.id === item.prodId);
-      return acc + (prod ? prod.precoUsd * item.qtd : 0);
-    }, 0);
-
-    const freteUsd = modalidade === 'CORREIOS_REMESSA' ? 28.0 : 0;
-    const tributosUsd = modalidade === 'CORREIOS_REMESSA' ? (subtotalUsd + freteUsd) * 0.445 : 0;
-    const totalPixBrl = (subtotalUsd + freteUsd + tributosUsd) * cambio;
-
-    const novoPedidoId = 'PED-CDE-' + (8840 + epyx.pilotoPickAndGo.filaPedidosOperador.length + 1);
-    const txId = 'E1823612020261017' + Math.floor(100000 + Math.random() * 900000);
-
-    const nomesLojas = Array.from(
-      new Set(
-        pickGoCart.map((i) => {
-          const p = epyx.pilotoPickAndGo.catalogoProdutos.find((x) => x.id === i.prodId);
-          return p ? p.lojaNome : '';
-        })
-      )
-    ).join(' + ');
-
-    const resumoItens = pickGoCart
-      .map((i) => {
-        const p = epyx.pilotoPickAndGo.catalogoProdutos.find((x) => x.id === i.prodId);
-        return p ? `${i.qtd}x ${p.nome.substring(0, 26)}` : '';
-      })
-      .join(' + ');
-
-    epyx.pilotoPickAndGo.filaPedidosOperador.unshift({
-      id: novoPedidoId,
-      turista: buyer,
-      loja: nomesLojas,
-      itensResumo: resumoItens,
-      totalUsd: subtotalUsd,
-      totalPixBrl: totalPixBrl,
-      pixTxId: txId,
-      pickerDesignado: 'Picker #04 — Mateo Villalba',
-      modalidade:
-        modalidade === 'CORREIOS_REMESSA'
-          ? 'Correios Packet · Remessa Conforme'
-          : `Retirada Expressa (${visit})`,
-      estado: 'Pago'
-    });
-
-    renderPickGoOperatorAndInvoices();
-
-    registrarEventoAuditoria(
-      'CambioRealAdapter (Produto B)',
-      'PIX_LIQUIDADO_COM_SPLIT',
-      `Pedido(${novoPedidoId})`,
-      `Pix ${fmtBrl(totalPixBrl)} confirmado (txid ${txId}). Split executado sem custódia pela EPYX Wealth.`
-    );
-
-    const voucherEl = document.getElementById('pickGoVoucherOutput');
-    voucherEl.innerHTML = `
-      <div class="qr-voucher-box">
-        <span class="badge badge-rating">PIX CONFIRMADO VIA CAMBIO REAL · ESTADO: PAGO</span>
-        <h4 style="margin-top:0.4rem; font-family:var(--font-serif); font-size:1.2rem;">
-          Passe de Retirada Fast-Exit · ${novoPedidoId}
-        </h4>
-        <div class="qr-code-visual" aria-label="QR Code de Retirada Pick and Go">
-          <svg viewBox="0 0 100 100" width="104" height="104" fill="#060a11">
-            <rect x="6" y="6" width="28" height="28" fill="none" stroke="#060a11" stroke-width="6"/>
-            <rect x="14" y="14" width="12" height="12"/>
-            <rect x="66" y="6" width="28" height="28" fill="none" stroke="#060a11" stroke-width="6"/>
-            <rect x="74" y="14" width="12" height="12"/>
-            <rect x="6" y="66" width="28" height="28" fill="none" stroke="#060a11" stroke-width="6"/>
-            <rect x="14" y="74" width="12" height="12"/>
-            <rect x="42" y="12" width="8" height="8"/>
-            <rect x="42" y="28" width="14" height="8"/>
-            <rect x="12" y="44" width="16" height="8"/>
-            <rect x="38" y="44" width="22" height="14"/>
-            <rect x="68" y="44" width="20" height="8"/>
-            <rect x="44" y="66" width="10" height="24"/>
-            <rect x="64" y="66" width="14" height="14"/>
-            <rect x="82" y="78" width="12" height="14"/>
-          </svg>
-        </div>
-        <div class="mono" style="font-size:0.73rem; color:var(--gold-light);">
-          TXID PIX: ${txId}
-        </div>
-        <p style="font-size:0.76rem; color:var(--text-secondary); margin-top:0.35rem;">
-          Apresente este QR Code no balcão exclusivo <strong>Pick &amp; Go (${nomesLojas})</strong>. O pedido já entrou na fila do Picker na Aba <strong>B2</strong>.
-        </p>
-      </div>
-    `;
-  }
-
-  // 11. Painel Operacional do Picker (Turno 8h-18h) e Faturas dos Lojistas (Seção 5.5 e 5.8)
-  function renderPickGoOperatorAndInvoices() {
-    const kpiGrid = document.getElementById('pilotKpisGrid');
-    kpiGrid.innerHTML = epyx.pilotoPickAndGo.indicadoresOperacionais
-      .map(
-        (k) => `
-        <div class="kpi-card">
-          <div class="kpi-label">${k.rotulo}</div>
-          <div class="kpi-value">${k.valor}</div>
-          <div class="kpi-sub">${k.meta}</div>
-        </div>
-      `
-      )
-      .join('');
-
-    const ordersBody = document.getElementById('pickerOrdersTableBody');
-    const nextStateMap = {
-      Pago: 'Em separação',
-      'Em separação': 'Separado',
-      Separado: 'Pronto para retirada',
-      'Pronto para retirada': 'Retirado'
-    };
-
-    ordersBody.innerHTML = epyx.pilotoPickAndGo.filaPedidosOperador
-      .map((o) => {
-        const nextState = nextStateMap[o.estado];
-        const badgeClass =
-          o.estado === 'Retirado'
-            ? 'badge-rating'
-            : o.estado === 'Exceção (item faltante)'
-            ? 'badge-danger'
-            : 'badge-gold';
-
-        return `
-          <tr>
-            <td class="mono"><strong>${o.id}</strong></td>
-            <td>${o.turista}</td>
-            <td><strong>${o.loja}</strong></td>
-            <td>${o.itensResumo}<br/><span style="font-size:0.71rem; color:var(--text-muted);">${o.modalidade}</span></td>
-            <td class="mono">${fmtBrl(o.totalPixBrl)}<br/><span style="font-size:0.7rem; color:var(--text-muted);">${fmtUsd(o.totalUsd)}</span></td>
-            <td>${o.pickerDesignado}</td>
-            <td><span class="badge ${badgeClass}">${o.estado}</span></td>
-            <td>
-              <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
-                ${
-                  nextState
-                    ? `<button type="button" class="btn btn-secondary btn-step-order" data-order-id="${o.id}" data-next="${nextState}" style="padding:0.32rem 0.6rem; font-size:0.72rem;">Avançar → ${nextState}</button>`
-                    : `<span class="mono" style="font-size:0.72rem; color:var(--emerald-light);">✓ Concluído</span>`
-                }
-                ${
-                  o.estado !== 'Retirado' && o.estado !== 'Exceção (item faltante)'
-                    ? `<button type="button" class="btn btn-secondary btn-exc-order" data-order-id="${o.id}" style="padding:0.32rem 0.6rem; font-size:0.72rem; color:var(--crimson-alert);">Registrar Exceção</button>`
-                    : ''
-                }
-              </div>
-            </td>
-          </tr>
-        `;
-      })
-      .join('');
-
-    ordersBody.querySelectorAll('.btn-step-order').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-order-id');
-        const next = btn.getAttribute('data-next');
-        const ord = epyx.pilotoPickAndGo.filaPedidosOperador.find((x) => x.id === id);
-        if (ord) {
-          const antes = ord.estado;
-          ord.estado = next;
-          registrarEventoAuditoria(
-            ord.pickerDesignado,
-            'TRANSICAO_ESTADO_PICK_AND_GO',
-            `Pedido(${ord.id})`,
-            `Estado atualizado: [${antes}] → [${next}].`
-          );
-          renderPickGoOperatorAndInvoices();
-        }
-      });
-    });
-
-    ordersBody.querySelectorAll('.btn-exc-order').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-order-id');
-        const ord = epyx.pilotoPickAndGo.filaPedidosOperador.find((x) => x.id === id);
-        if (ord) {
-          ord.estado = 'Exceção (item faltante)';
-          registrarEventoAuditoria(
-            ord.pickerDesignado,
-            'EXCECAO_PICKING_REGISTRADA',
-            `Pedido(${ord.id})`,
-            'Divergência de estoque registrada no picking; ajuste programado na FaturaLoja (Seção 5.4).'
-          );
-          renderPickGoOperatorAndInvoices();
-        }
-      });
-    });
-
-    const invBody = document.getElementById('merchantInvoicesTableBody');
-    invBody.innerHTML = epyx.pilotoPickAndGo.faturasRepasseLojas
-      .map(
-        (f) => `
-        <tr>
-          <td class="mono"><strong>${f.faturaId}</strong></td>
-          <td><strong>${f.loja}</strong></td>
-          <td class="mono">${fmtUsd(f.brutoUsd)}</td>
-          <td class="mono">- ${fmtUsd(f.comissaoPortalUsd)}</td>
-          <td class="mono" style="color: ${f.ajusteFaltanteUsd < 0 ? 'var(--crimson-alert)' : 'var(--text-muted)'};">
-            ${f.ajusteFaltanteUsd === 0 ? 'US$ 0,00' : fmtUsd(f.ajusteFaltanteUsd)}
-          </td>
-          <td class="mono" style="color: var(--emerald-light);"><strong>${fmtUsd(f.liquidoLojistaUsd)}</strong></td>
-          <td><span class="badge badge-rating">${f.status}</span></td>
-        </tr>
-      `
-      )
-      .join('');
-  }
-
-  // 12. Governança Transversal: CMS Canal Portal Paraguai, Matriz RBAC, P1-P6 e Auditoria
+  // 7. Governança P1-P6, Conciliação Diária B3 e Auditoria
   function renderGovernanceAndAudit() {
-    const cmsContainer = document.getElementById('cmsArticlesContainer');
-    cmsContainer.innerHTML = epyx.conteudosCanalPortalParaguai
-      .map((art) => {
-        const bloqueado = art.statusCompliance === 'BLOQUEADO_COMPLIANCE';
-        return `
-          <article class="asset-card" style="padding: 1.25rem;">
-            <div class="badge-row">
-              <span class="badge ${bloqueado ? 'badge-danger' : 'badge-rating'}">${art.statusCompliance}</span>
-              <span class="badge badge-gold">${art.produtoAlvo}</span>
-            </div>
-            <h3 class="asset-title" style="font-size: 1.15rem; margin-bottom: 0.35rem;">${art.titulo}</h3>
-            <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.65rem;">
-              Autor: <strong>${art.autor}</strong> · Revisão: <strong>${art.revisadoPor}</strong>
-            </p>
-            <p style="font-size: 0.81rem; color: var(--text-secondary);">${art.resumo}</p>
-          </article>
-        `;
-      })
-      .join('');
-
-    const rbacBody = document.getElementById('rbacMatrixTableBody');
-    rbacBody.innerHTML = epyx.matrizPapeisRbac
-      .map(
-        (r) => `
-        <tr>
-          <td><span class="badge badge-gold">${r.nome}</span></td>
-          <td>${r.acessoProdutoA}</td>
-          <td>${r.acessoProdutoB}</td>
-          <td style="color: var(--emerald-light);">${r.restricaoSeguranca}</td>
-        </tr>
-      `
-      )
-      .join('');
-
     const pBody = document.getElementById('p1p6TableBody');
     pBody.innerHTML = data.pontosVerificacaoP1P6
       .map(
@@ -1134,10 +599,10 @@
       });
       renderReconciliationTable();
       registrarEventoAuditoria(
-        'AdaptadorZuviaB3 (CachePosicao)',
-        'SINCRONIZACAO_API_LEITURA_ZUVIA',
+        'AdaptadorB3 (Reconciliação DLT)',
+        'CONCILIACAO_POSICOES_LEDGER_B3',
         'Todas as Séries (4 ativos)',
-        'Cache de leitura sincronizado com a API Zuvia/B3 sem armazenamento de dados de KYC no portal.'
+        '100% das posições locais conferidas contra o Ledger B3. Divergência = 0,0000.'
       );
     });
   }
@@ -1181,7 +646,7 @@
       .join('');
   }
 
-  // 13. Modal de Encaminhamento SSO para a Zuvia (<dialog closedby="any"> + fallback)
+  // 8. Boleta Modal de Subscrição Primária via Zuvia / Pix (<dialog closedby="any"> + fallback)
   function initSubscribeModal() {
     const dialog = document.getElementById('subscribeDialog');
     const qtdInput = document.getElementById('modalQtdTokens');
@@ -1224,9 +689,7 @@
         (p) => p.simbolo === currentModalAsset.simbolo
       );
       const rendaMensalAdicional =
-        ((valorBrl / data.meta.cambioReferencia.usdBrl) *
-          (currentModalAsset.rendaProjetadaUsdAa / 100) /
-          12) *
+        ((valorBrl / data.meta.cambioReferencia.usdBrl) * (currentModalAsset.rendaProjetadaUsdAa / 100) / 12) *
         data.meta.cambioReferencia.usdBrl;
 
       if (posExistente) {
@@ -1246,10 +709,10 @@
       }
 
       registrarEventoAuditoria(
-        'WebhookZuviaHMAC (Seção 4.4)',
-        'SUBSCRICAO_CONFIRMADA_AMBIENTE_ZUVIA',
-        `CachePosicao(${currentModalAsset.simbolo})`,
-        `Encaminhamento SSO concluído na Zuvia: +${fmtInt(qtd)} CIC (${fmtBrl(valorBrl)}) atualizados via API de leitura.`
+        'AdaptadorZuvia (Liquidação Pix D+0)',
+        'SUBSCRICAO_PRIMARIA_ESCRITURADA',
+        `Token(${currentModalAsset.simbolo})`,
+        `Ordem liquidada via Pix: +${fmtInt(qtd)} CIC (${fmtBrl(valorBrl)}) registrados no Ledger B3.`
       );
 
       renderMarketplaceCards();
@@ -1262,8 +725,8 @@
   function openSubscribeModal(asset) {
     currentModalAsset = asset;
     document.getElementById('modalAssetTicker').textContent = `SÉRIE ${asset.simbolo} · ${asset.construtoraNome} (RATING ${asset.ratingConstrutora})`;
-    document.getElementById('dialogSubscribeTitle').textContent = `Encaminhamento SSO para Zuvia — ${asset.nome}`;
-    document.getElementById('modalAssetSubtitle').textContent = `${asset.endereco} · PropCo PY: ${asset.propCoNome}`;
+    document.getElementById('dialogSubscribeTitle').textContent = `Boleta de Subscrição — ${asset.nome}`;
+    document.getElementById('modalAssetSubtitle').textContent = `${asset.endereco} · Veículo Proprietário: ${asset.propCoNome}`;
     document.getElementById('modalQtdTokens').value = 400;
     document.getElementById('modalTermoRisco').checked = false;
 
@@ -1285,18 +748,14 @@
     document.getElementById('modalPisoOpCo').textContent = `${currentModalAsset.pisoOpCoUsdAa.toFixed(2).replace('.', ',')}% a.a. em US$ (Contrato Mestre 10 anos)`;
   }
 
-  // Inicialização geral do Portal EPYX Wealth
   document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
-    initI18n();
-    initRbacControl();
-    initTabsAndDoors();
+    initTabs();
     renderMarketplaceCards();
     initSimulator();
-    renderConstrutorasAndPipeline();
+    renderConstrutoras();
     initGatesPropCoOpCo();
     renderPortfolioAndB3();
-    initPickAndGoModule();
     renderGovernanceAndAudit();
     initSubscribeModal();
 
