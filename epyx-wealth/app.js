@@ -46,7 +46,7 @@
     renderAuditLogs();
   }
 
-  // 1. Alternância de Tema Institucional (Dark <-> Private Wealth Light)
+  // 1. Alternância de Tema Institucional (Padrão BTG Wealth Claro <-> BTG Night Desk Escuro)
   function initThemeToggle() {
     const btn = document.getElementById('btnToggleTheme');
     const label = document.getElementById('themeToggleLabel');
@@ -54,11 +54,11 @@
 
     btn.addEventListener('click', () => {
       const html = document.documentElement;
-      const current = html.getAttribute('data-theme') || 'dark';
-      const next = current === 'dark' ? 'light' : 'dark';
+      const current = html.getAttribute('data-theme') || 'light';
+      const next = current === 'light' ? 'dark' : 'light';
       html.setAttribute('data-theme', next);
       label.textContent =
-        next === 'dark' ? 'Modo Private Wealth (Claro)' : 'Modo Terminal Institucional (Escuro)';
+        next === 'light' ? 'Modo BTG Night Desk (Escuro)' : 'Padrão BTG Wealth (Claro)';
     });
   }
 

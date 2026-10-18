@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EPYX Wealth | Plataforma de Tokenização de Ativos (B3/Zuvia) &amp; Pick &amp; Go Cross-Border</title>
+  <title>EPYX Wealth Management | Tokenização de Ativos (B3/Zuvia) &amp; Pick &amp; Go Cross-Border</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <!-- 1. Barra Superior de Governança, Conta Única IAM (Seção 3.2 e 6) e Idioma PT/ES -->
+  <!-- 1. Barra Superior Private Client (Padrão BTG Wealth Management) -->
   <div class="institutional-topbar" role="region" aria-label="Governança EPYX Wealth, Conta Única IAM e Idioma">
     <div class="topbar-left">
-      <span class="compliance-pill">EPYX WEALTH · PORTAL PÚBLICO v0.2</span>
+      <span class="compliance-pill">EPYX WEALTH MANAGEMENT · DESK BINACIONAL</span>
       <span id="i18nTopRule">
-        Princípio de Arquitetura: <strong>Sem custódia própria de valores mobiliários ou moeda</strong>. Produto A liquidado na <strong>Zuvia/B3 (CVM 88)</strong>; Produto B liquidado via <strong>Cambio Real (Split Pix)</strong>. Dados e fluxos estritamente segregados.
+        Arquitetura Fiduciária: <strong>Sem custódia própria de valores mobiliários ou moeda</strong>. Produto A escriturado na <strong>Zuvia/B3 (CVM 88)</strong>; Produto B liquidado via <strong>Cambio Real (Split Pix)</strong>.
       </span>
     </div>
 
@@ -45,31 +45,36 @@
       </span>
 
       <button type="button" class="theme-toggle-btn" id="btnToggleTheme" aria-label="Alternar tema visual">
-        <span id="themeToggleLabel">Modo Private Wealth (Claro)</span>
+        <span id="themeToggleLabel">Modo BTG Night Desk (Escuro)</span>
       </button>
     </div>
   </div>
 
-  <div class="container">
-    <!-- 2. Cabeçalho Institucional EPYX Wealth -->
-    <header class="site-header">
+  <!-- 2. Hero Institucional Navy Padrão BTG Capital / Wealth Management -->
+  <header class="btg-hero-wrapper">
+    <div class="container">
       <div class="header-top">
         <div class="brand-group">
-          <div class="brand-crest" aria-hidden="true">
-            <span class="crest-code">EPYX</span>
-            <span class="crest-sub">WEALTH</span>
+          <div class="btg-brand-lockup" aria-label="EPYX Wealth Management">
+            <div class="btg-logo-mark">
+              <span class="epyx-word">EPYX</span>
+            </div>
+            <div class="btg-logo-divider" aria-hidden="true"></div>
+            <div class="btg-logo-division">
+              <span class="wealth-word">wealth management</span>
+              <span class="desk-word">BRASIL · PARAGUAI · INFRAESTRUTURA B3</span>
+            </div>
           </div>
+
           <div class="brand-title">
             <div class="brand-eyebrow">
-              <span>EPYX WEALTH PLATFORM</span>
+              <span>ESTRUTURAÇÃO DE ATIVOS REAIS (ZUVIA / CVM 88 / B3)</span>
               <span>•</span>
-              <span>INFRAESTRUTURA ZUVIA &amp; B3 (PRODUTO A)</span>
-              <span>•</span>
-              <span>PORTAL PARAGUAI &amp; CAMBIO REAL (PRODUTO B)</span>
+              <span>OPERAÇÃO CROSS-BORDER PICK &amp; GO (PORTAL PARAGUAI / CAMBIO REAL)</span>
             </div>
-            <h1 id="i18nHeroTitle">EPYX Wealth — Ativos Reais Tokenizados &amp; Comércio Cross-Border</h1>
+            <h1 id="i18nHeroTitle">Plataforma Institucional de Ativos Reais Tokenizados &amp; Liquidação Cross-Border</h1>
             <p class="brand-subtitle" id="i18nHeroSubtitle">
-              Plataforma tecnológica e operacional binacional (Brasil–Paraguai) sob arquitetura segregada: vitrine de investimentos em ativos imobiliários em Assunção distribuídos pela <strong>Zuvia (Res. CVM 88 / B3)</strong> e sistema <strong>Pick &amp; Go Cross-Border</strong> em Ciudad del Este operado com o <strong>Portal Paraguai</strong>, <strong>Cambio Real</strong> e <strong>Correios (Remessa Conforme)</strong>.
+              A <strong>EPYX Wealth Management</strong> consolida sob uma única governança tecnológica a vitrine de ativos imobiliários corporativos e residenciais em Assunção distribuídos pela <strong>Zuvia (Res. CVM 88 / B3)</strong> e o ecossistema <strong>Pick &amp; Go Paraguai</strong> em Ciudad del Este operado com o <strong>Portal Paraguai</strong>, <strong>Cambio Real</strong> e <strong>Correios (Remessa Conforme)</strong>.
             </p>
           </div>
         </div>
@@ -99,17 +104,17 @@
       </div>
 
       <!-- 3. AS DUAS PORTAS DO PORTAL EPYX WEALTH (Seção 0 e 2.2) -->
-      <div class="dual-doors-grid" style="margin-top: 1.5rem;" aria-label="As Duas Portas do Portal EPYX Wealth">
+      <div class="dual-doors-grid" aria-label="As Duas Portas do Portal EPYX Wealth">
         <!-- PORTA A: INVESTIR -->
         <div class="door-card door-invest active-door" id="doorCardA">
           <div>
             <div class="badge-row">
-              <span class="badge badge-gold">PORTA A · PRODUTO A (TOKENIZAÇÃO DE ATIVOS)</span>
+              <span class="badge badge-ticker">PORTA A · PRODUTO A (REAL ESTATE TOKENIZADO)</span>
               <span class="badge badge-rating">ZUVIA (CVM RES. 88) + TECNOLOGIA B3</span>
             </div>
             <h2 id="i18nDoorATitle">Investir em Ativos Reais (Assunção)</h2>
             <p id="i18nDoorADesc">
-              Vitrine de ofertas reguladas de prédios inteiros (Matrícula Única) no eixo Villa Morra e Paseo La Galería. A EPYX Wealth apresenta a diligência e encaminha via SSO ao ambiente regulado da <strong>Zuvia/B3</strong> (sem coleta de KYC nem custódia de valores pelo portal).
+              Vitrine de ofertas reguladas de prédios inteiros (Matrícula Única) no eixo Villa Morra e Paseo La Galería. A EPYX Wealth apresenta a diligência técnica e encaminha via SSO ao ambiente regulado da <strong>Zuvia/B3</strong> (sem coleta de KYC nem custódia de valores pelo portal).
             </p>
             <ul class="door-meta-list">
               <li>
@@ -144,8 +149,8 @@
         <div class="door-card door-pickgo" id="doorCardB">
           <div>
             <div class="badge-row">
-              <span class="badge badge-ticker">PORTA B · PRODUTO B (PICK &amp; GO CROSS-BORDER)</span>
-              <span class="badge badge-gold">PORTAL PARAGUAI + CAMBIO REAL + CORREIOS</span>
+              <span class="badge badge-gold">PORTA B · PRODUTO B (PICK &amp; GO CROSS-BORDER)</span>
+              <span class="badge badge-ticker">PORTAL PARAGUAI + CAMBIO REAL + CORREIOS</span>
             </div>
             <h2 id="i18nDoorBTitle">Comprar no Paraguai · Pick &amp; Go</h2>
             <p id="i18nDoorBDesc">
@@ -180,10 +185,12 @@
           </div>
         </div>
       </div>
+    </div>
+  </header>
 
-      <!-- Banner Dinâmico de Segregação de Acesso RBAC (Seção 6) -->
-      <div class="rbac-banner" id="rbacActiveBanner" aria-live="polite"></div>
-    </header>
+  <div class="main-content-container">
+    <!-- Banner Dinâmico de Segregação de Acesso RBAC (Seção 6) -->
+    <div class="rbac-banner" id="rbacActiveBanner" aria-live="polite"></div>
 
     <!-- 4. Navegação Completa dos Módulos (Produto A + Produto B + Governança Compartilhada) -->
     <nav class="nav-tabs" aria-label="Navegação de Módulos EPYX Wealth">
