@@ -3,34 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EPYX Wealth Management | Tokenização de Ativos (B3/Zuvia) &amp; Pick &amp; Go Cross-Border</title>
+  <title>EPYX Wealth Management | Plataforma Institucional de Tokenização de Ativos Reais (Zuvia &amp; B3)</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <!-- 1. Barra Superior Private Client (Padrão BTG Wealth Management) -->
   <div class="institutional-topbar" role="region" aria-label="Governança EPYX Wealth, Conta Única IAM e Idioma">
     <div class="topbar-left">
-      <span class="compliance-pill">EPYX WEALTH MANAGEMENT · DESK BINACIONAL</span>
+      <span class="compliance-pill">EPYX WEALTH MANAGEMENT · PRIVATE REAL ESTATE DESK</span>
       <span id="i18nTopRule">
-        Arquitetura Fiduciária: <strong>Sem custódia própria de valores mobiliários ou moeda</strong>. Produto A escriturado na <strong>Zuvia/B3 (CVM 88)</strong>; Produto B liquidado via <strong>Cambio Real (Split Pix)</strong>.
+        Arquitetura Fiduciária: <strong>Sem custódia própria de valores mobiliários ou moeda</strong>. Oferta pública, KYC/Suitability e escrituração operados no ambiente regulado da <strong>Zuvia (Res. CVM 88) &amp; Infraestrutura B3</strong>.
       </span>
     </div>
 
     <div class="topbar-right">
-      <!-- Seletor Interativo de Papel RBAC (Seção 6) -->
       <div class="iam-control">
-        <label for="iamRoleSelect">Perfil IAM (Seção 6):</label>
+        <label for="iamRoleSelect">Perfil IAM:</label>
         <select id="iamRoleSelect" class="iam-select" aria-label="Selecionar perfil de acesso RBAC">
-          <option value="INVESTIDOR">Investidor BR/PY (MFA Ativo)</option>
-          <option value="TURISTA">Turista Comprador (Pick &amp; Go)</option>
-          <option value="LOJISTA">Lojista (Portal Paraguai)</option>
-          <option value="OPERADOR">Operador / Picker (CDE 8h–18h)</option>
-          <option value="COMPLIANCE">Compliance / Admin EPYX</option>
-          <option value="VISITANTE">Visitante Público</option>
+          <option value="INVESTIDOR">Investidor Qualificado / Varejo (MFA Ativo)</option>
+          <option value="COMPLIANCE">Compliance Jurídico &amp; Comitê EPYX</option>
+          <option value="VISITANTE">Visitante Institucional</option>
         </select>
       </div>
 
-      <!-- Seletor de Idioma PT/ES (Seção 2.2 e 9) -->
       <div class="iam-control">
         <label for="iamLangSelect">Idioma:</label>
         <select id="iamLangSelect" class="iam-select" aria-label="Selecionar idioma PT ou ES">
@@ -41,7 +36,7 @@
 
       <span class="status-indicator">
         <span class="led-dot" aria-hidden="true"></span>
-        ZUVIA/B3 &amp; CAMBIO REAL: ONLINE
+        API ZUVIA &amp; LEDGER B3: SINCRONIZADOS
       </span>
 
       <button type="button" class="theme-toggle-btn" id="btnToggleTheme" aria-label="Alternar tema visual">
@@ -53,7 +48,7 @@
   <!-- 2. Hero Institucional Navy Padrão BTG Capital / Wealth Management -->
   <header class="btg-hero-wrapper">
     <div class="container">
-      <div class="header-top">
+      <div class="hero-split-grid">
         <div class="brand-group">
           <div class="btg-brand-lockup" aria-label="EPYX Wealth Management">
             <div class="btg-logo-mark">
@@ -62,189 +57,231 @@
             <div class="btg-logo-divider" aria-hidden="true"></div>
             <div class="btg-logo-division">
               <span class="wealth-word">wealth management</span>
-              <span class="desk-word">BRASIL · PARAGUAI · INFRAESTRUTURA B3</span>
+              <span class="desk-word">REAL WORLD ASSETS · ZUVIA CVM 88 · TECNOLOGIA B3</span>
             </div>
           </div>
 
           <div class="brand-title">
             <div class="brand-eyebrow">
-              <span>ESTRUTURAÇÃO DE ATIVOS REAIS (ZUVIA / CVM 88 / B3)</span>
+              <span>TOKENIZAÇÃO DE ATIVOS FÍSICOS (RWA)</span>
               <span>•</span>
-              <span>OPERAÇÃO CROSS-BORDER PICK &amp; GO (PORTAL PARAGUAI / CAMBIO REAL)</span>
+              <span>PARAGUAI GRAU DE INVESTIMENTO (Baa3 MOODY'S)</span>
+              <span>•</span>
+              <span>RENDA EM DÓLAR &amp; LIQUIDAÇÃO PIX</span>
             </div>
-            <h1 id="i18nHeroTitle">Plataforma Institucional de Ativos Reais Tokenizados &amp; Liquidação Cross-Border</h1>
+            <h1 id="i18nHeroTitle">Estruturação e Tokenização Institucional de Ativos Imobiliários Prime</h1>
             <p class="brand-subtitle" id="i18nHeroSubtitle">
-              A <strong>EPYX Wealth Management</strong> consolida sob uma única governança tecnológica a vitrine de ativos imobiliários corporativos e residenciais em Assunção distribuídos pela <strong>Zuvia (Res. CVM 88 / B3)</strong> e o ecossistema <strong>Pick &amp; Go Paraguai</strong> em Ciudad del Este operado com o <strong>Portal Paraguai</strong>, <strong>Cambio Real</strong> e <strong>Correios (Remessa Conforme)</strong>.
+              A <strong>EPYX Wealth Management</strong> estrutura e origina ativos imobiliários reais de alta liquidez em Assunção (eixo corporativo <strong>Villa Morra &amp; Shopping Paseo La Galería</strong>), conectando investidores brasileiros à renda de locação em dólar (US$) por meio de Contratos de Investimento Coletivo (CIC) distribuídos pela <strong>Zuvia (Res. CVM 88)</strong> e registrados na infraestrutura <strong>B3</strong>.
             </p>
           </div>
-        </div>
 
-        <div class="header-tickers" aria-label="Cotações Oficiais e Parâmetros Operacionais">
-          <div class="ticker-pill">
-            <span class="label">Soberano Paraguai</span>
-            <span class="val">Baa3 (Moody’s)</span>
-            <span class="sub-val">Grau de Investimento</span>
-          </div>
-          <div class="ticker-pill">
-            <span class="label">Câmbio Pix / Cambio Real</span>
-            <span class="val" id="headerCambioBrl">R$ 5,6500</span>
-            <span class="sub-val">US$ 1,00 · Taxa Exibida</span>
-          </div>
-          <div class="ticker-pill">
-            <span class="label">Guarani Referencial</span>
-            <span class="val">G$ 7.820</span>
-            <span class="sub-val">US$ 1,00 · Assunção / CDE</span>
-          </div>
-          <div class="ticker-pill">
-            <span class="label">SLA Operacional (Seção 9)</span>
-            <span class="val">99,5% Uptime</span>
-            <span class="sub-val">Confirmação Pix &lt; 10 s</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. AS DUAS PORTAS DO PORTAL EPYX WEALTH (Seção 0 e 2.2) -->
-      <div class="dual-doors-grid" aria-label="As Duas Portas do Portal EPYX Wealth">
-        <!-- PORTA A: INVESTIR -->
-        <div class="door-card door-invest active-door" id="doorCardA">
-          <div>
-            <div class="badge-row">
-              <span class="badge badge-ticker">PORTA A · PRODUTO A (REAL ESTATE TOKENIZADO)</span>
-              <span class="badge badge-rating">ZUVIA (CVM RES. 88) + TECNOLOGIA B3</span>
-            </div>
-            <h2 id="i18nDoorATitle">Investir em Ativos Reais (Assunção)</h2>
-            <p id="i18nDoorADesc">
-              Vitrine de ofertas reguladas de prédios inteiros (Matrícula Única) no eixo Villa Morra e Paseo La Galería. A EPYX Wealth apresenta a diligência técnica e encaminha via SSO ao ambiente regulado da <strong>Zuvia/B3</strong> (sem coleta de KYC nem custódia de valores pelo portal).
-            </p>
-            <ul class="door-meta-list">
-              <li>
-                <span>Primeiro Caso</span>
-                <strong>Villa Morra &amp; Paseo Galería</strong>
-              </li>
-              <li>
-                <span>Subscrição &amp; Custódia</span>
-                <strong>Ambiente Zuvia / Ledger B3</strong>
-              </li>
-              <li>
-                <span>Renda de Locação (Caixa)</span>
-                <strong>7,9% a 9,1% a.a. US$ (Pix R$)</strong>
-              </li>
-              <li>
-                <span>Leitura de Posição</span>
-                <strong>API Zuvia (Cache Auditado)</strong>
-              </li>
-            </ul>
-          </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
-            <button type="button" class="btn btn-primary" data-jump-tab="tab-marketplace">
-              Explorar Vitrine no Portal (Produto A)
+          <div style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.35rem;">
+            <button type="button" class="btn btn-gold" data-jump-tab="tab-showcase">
+              Ver Mockups de Telas (KYC, Marketplace Zuvia &amp; Portfólio)
             </button>
-            <a href="https://tokenparaguai.vercel.app" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration: none;">
-              Abrir Plataforma Dedicada Token Paraguai ↗
+            <button type="button" class="btn btn-secondary" data-jump-tab="tab-marketplace" style="background: rgba(255,255,255,0.1); color: #fff; border-color: rgba(255,255,255,0.3);">
+              Simular Investimento &amp; Ver Emissões
+            </button>
+            <a href="https://tokenparaguai.vercel.app" target="_blank" rel="noopener" class="btn btn-secondary" style="text-decoration: none; background: transparent; color: #e5c888; border-color: rgba(229,200,136,0.5);">
+              Acessar Terminal Token Paraguai ↗
             </a>
           </div>
         </div>
 
-        <!-- PORTA B: COMPRAR NO PARAGUAI (PICK & GO) -->
-        <div class="door-card door-pickgo" id="doorCardB">
-          <div>
-            <div class="badge-row">
-              <span class="badge badge-gold">PORTA B · PRODUTO B (PICK &amp; GO CROSS-BORDER)</span>
-              <span class="badge badge-ticker">PORTAL PARAGUAI + CAMBIO REAL + CORREIOS</span>
+        <!-- Card Visual Hero: Tokenização de Ativos Físicos (RWA) -->
+        <div class="hero-rwa-visual-card">
+          <img src="assets/rwa-tokenization-hero.jpg" alt="Tokenização de Ativos Imobiliários Físicos em Assunção conectados ao Ledger B3" />
+          <div class="hero-rwa-caption">
+            <div>
+              <strong style="color: #e5c888; display: block;">LASTRO FÍSICO REAL → TOKEN CIC (B3/ZUVIA)</strong>
+              <span>Edifícios inteiros com Matrícula Única na PropCo PY fracionados a R$ 25,00 por token</span>
             </div>
-            <h2 id="i18nDoorBTitle">Comprar no Paraguai · Pick &amp; Go</h2>
-            <p id="i18nDoorBDesc">
-              Compre nas lojas homologadas do <strong>Portal Paraguai</strong> em Ciudad del Este, pague por <strong>Pix via Cambio Real</strong> (com split automático sem retenção pela EPYX) e retire o pedido pronto via QR Code sem fila de caixa — ou solicite envio ao Brasil pelos <strong>Correios (Remessa Conforme)</strong>.
-            </p>
-            <ul class="door-meta-list">
-              <li>
-                <span>Operação Piloto CDE</span>
-                <strong>5 Lojas · 10 Pickers (8h–18h)</strong>
-              </li>
-              <li>
-                <span>Liquidação &amp; Câmbio</span>
-                <strong>Cambio Real (Split Automático)</strong>
-              </li>
-              <li>
-                <span>Retirada Física</span>
-                <strong>Fast-Exit QR Code na Loja/Anexo</strong>
-              </li>
-              <li>
-                <span>Envio Opcional Brasil</span>
-                <strong>Correios · Remessa Conforme</strong>
-              </li>
-            </ul>
+            <span class="badge badge-rating">RWA VERIFIED</span>
           </div>
-          <div style="display: flex; flex-wrap: wrap; gap: 0.6rem;">
-            <button type="button" class="btn btn-cyan" data-jump-tab="tab-pickgo-loja">
-              Acessar Lojas &amp; Carrinho Pix (Produto B)
-            </button>
-            <button type="button" class="btn btn-secondary" data-jump-tab="tab-pickgo-operacao">
-              Painel Picker &amp; Faturas Lojista (CDE)
-            </button>
-          </div>
+        </div>
+      </div>
+
+      <!-- Tickers Macroeconômicos e da Carteira -->
+      <div class="header-tickers" aria-label="Indicadores Institucionais">
+        <div class="ticker-pill">
+          <span class="label">Rating Soberano Paraguai</span>
+          <span class="val">Baa3 (Moody’s)</span>
+          <span class="sub-val">Investment Grade · 10-10-10 Tax</span>
+        </div>
+        <div class="ticker-pill">
+          <span class="label">Volume Sob Estruturação</span>
+          <span class="val">R$ 51.250.000</span>
+          <span class="sub-val">2.050.000 Tokens CIC (R$ 25,00)</span>
+        </div>
+        <div class="ticker-pill">
+          <span class="label">Yield Alvo Locação (Caixa US$)</span>
+          <span class="val">7,90% – 9,10% a.a.</span>
+          <span class="sub-val">Piso Contratual OpCo: 6,5%–7,0% US$</span>
+        </div>
+        <div class="ticker-pill">
+          <span class="label">Câmbio Referencial PTAX</span>
+          <span class="val" id="headerCambioBrl">R$ 5,6500</span>
+          <span class="sub-val">Dividendos Mensais via Pix</span>
         </div>
       </div>
     </div>
   </header>
 
   <div class="main-content-container">
-    <!-- Banner Dinâmico de Segregação de Acesso RBAC (Seção 6) -->
+    <!-- Banner Dinâmico de Segregação de Acesso RBAC -->
     <div class="rbac-banner" id="rbacActiveBanner" aria-live="polite"></div>
 
-    <!-- 4. Navegação Completa dos Módulos (Produto A + Produto B + Governança Compartilhada) -->
-    <nav class="nav-tabs" aria-label="Navegação de Módulos EPYX Wealth">
-      <button type="button" class="tab-btn active" data-tab="tab-marketplace">
-        <span class="tab-num">A1</span> Investir: Ofertas Assunção &amp; Simulador
+    <!-- 3. Navegação Executiva Focada 100% em Tokenização de Ativos e Wealth Management -->
+    <nav class="nav-tabs" aria-label="Módulos do Portal EPYX Wealth Management">
+      <button type="button" class="tab-btn active" data-tab="tab-showcase">
+        <span class="tab-num">01</span> Jornada Digital: RWA, Onboarding KYC, Marketplace Zuvia &amp; Tela do Investidor
       </button>
-      <button type="button" class="tab-btn" data-tab="tab-construtoras">
-        <span class="tab-num">A2</span> Investir: Incorporadoras &amp; Pipeline (4.3)
-      </button>
-      <button type="button" class="tab-btn" data-tab="tab-propco-opco">
-        <span class="tab-num">A3</span> Investir: PropCo/OpCo &amp; Gates 6.2 / 6.3
+      <button type="button" class="tab-btn" data-tab="tab-marketplace">
+        <span class="tab-num">02</span> Vitrine de Emissões (Villa Morra &amp; Galería) + Simulador
       </button>
       <button type="button" class="tab-btn" data-tab="tab-carteira-b3">
-        <span class="tab-num">A4</span> Investir: Minha Posição (API Zuvia) &amp; B3
+        <span class="tab-num">03</span> Tela do Usuário: Tokens Comprados, Rentabilidade Mensal, Market Value &amp; Saldo
       </button>
-      <button type="button" class="tab-btn" data-tab="tab-pickgo-loja">
-        <span class="tab-num">B1</span> Pick &amp; Go: Lojas CDE, Pix Split &amp; QR Retirada
+      <button type="button" class="tab-btn" data-tab="tab-construtoras">
+        <span class="tab-num">04</span> Incorporadoras (Rating AAA–A+) &amp; Pipeline de Ativos
       </button>
-      <button type="button" class="tab-btn" data-tab="tab-pickgo-operacao">
-        <span class="tab-num">B2</span> Pick &amp; Go: Fila de Picking (8h–18h) &amp; Repasses
-      </button>
-      <button type="button" class="tab-btn" data-tab="tab-governanca">
-        <span class="tab-num">G1</span> Canal Portal Paraguai (CMS), RBAC &amp; Compliance
+      <button type="button" class="tab-btn" data-tab="tab-propco-opco">
+        <span class="tab-num">05</span> Governança PropCo/OpCo (Gate 6.2 &amp; Pix 6.3) &amp; Compliance CVM 88
       </button>
     </nav>
 
     <!-- =========================================================================
-         MÓDULO A1: PRODUTO A — VITRINE DE OFERTAS ASSUNÇÃO & SIMULADOR
+         MÓDULO 01: JORNADA DIGITAL DE TOKENIZAÇÃO & MOCKUPS DE TELAS
          ========================================================================= -->
-    <section id="tab-marketplace" class="tab-panel active" aria-label="Produto A: Vitrine de Ofertas de Tokens Imobiliários">
+    <section id="tab-showcase" class="tab-panel active" aria-label="Mockups de Telas e Arquitetura de Tokenização de Ativos Físicos">
+      <!-- Resumo Executivo da Posição do Usuário (Saldo Total, Market Value B3, Rentabilidade Mensal, Tokens Comprados) -->
       <div class="kpi-grid">
         <div class="kpi-card">
-          <div class="kpi-label">Prédios Inteiros em Assunção (Matrícula Única)</div>
-          <div class="kpi-value">4 Empreendimentos</div>
-          <div class="kpi-sub">Villa Morra, Paseo La Galería &amp; WTC (14.950 m²)</div>
+          <div class="kpi-label">Saldo Total Investido / Patrimônio NAV</div>
+          <div class="kpi-value" id="dashTopSaldoNav">R$ 52.220,00</div>
+          <div class="kpi-sub">Valor Patrimonial atestado por Laudo Anual Independente</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Renda Projetada de Locação (Caixa US$)</div>
-          <div class="kpi-value" style="color: var(--emerald-light);">7,90% – 9,10% a.a.</div>
-          <div class="kpi-sub">Piso contratual OpCo: 6,50% a 7,00% a.a. em US$</div>
+          <div class="kpi-label">Market Value (Marcação Ambiente B3/Zuvia)</div>
+          <div class="kpi-value" style="color: var(--navy-b3);" id="dashTopMarketValue">R$ 53.080,00</div>
+          <div class="kpi-sub">+5,44% sobre o custo de aquisição (R$ 50.000,00)</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Papel EPYX Wealth × Zuvia (Seção 4.1)</div>
-          <div class="kpi-value" style="color: var(--gold-light);">SSO Regulado</div>
-          <div class="kpi-sub">KYC, subscrição e custódia 100% no ambiente Zuvia/B3</div>
+          <div class="kpi-label">Rentabilidade Mensal de Aluguel (Pix R$)</div>
+          <div class="kpi-value" style="color: var(--emerald-light);" id="dashTopRendaMensal">R$ 349,52 / mês</div>
+          <div class="kpi-sub">Equivalente a 8,62% a.a. líquido em US$ (Caixa OpCo → PropCo)</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Opções de Recebimento de Renda (Seção 4.1)</div>
-          <div class="kpi-value">Pix R$ / G$ PY</div>
-          <div class="kpi-sub">Agente pagador regulado (Reais via Pix ou Guaranis)</div>
+          <div class="kpi-label">Tokens Comprados sob Custódia (Ledger B3)</div>
+          <div class="kpi-value" style="color: var(--gold-primary);" id="dashTopTotalTokens">2.000 CIC</div>
+          <div class="kpi-sub">Séries ZUV-WTC03 (1.200 CIC) + ZUV-GAL01 (800 CIC)</div>
         </div>
       </div>
 
-      <!-- Filtros Institucionais Produto A -->
+      <!-- Galeria dos 4 Mockups Solicitados -->
+      <div class="mockup-showcase-grid">
+        <!-- Mockup 1: Tokenização de Ativos Físicos (RWA) -->
+        <article class="mockup-card">
+          <div class="mockup-img-wrap">
+            <img src="assets/rwa-tokenization-hero.jpg" alt="Arquitetura de Tokenização de Ativos Físicos Imobiliários em Assunção" />
+          </div>
+          <div class="mockup-body">
+            <div>
+              <div class="badge-row">
+                <span class="badge badge-gold">1. TOKENIZAÇÃO DE ATIVOS FÍSICOS (RWA)</span>
+                <span class="badge badge-rating">MATRÍCULA ÚNICA DGRP ASSUNÇÃO</span>
+              </div>
+              <h3>Transformação do Edifício Físico em Tokens Escriturados na B3</h3>
+              <p>
+                Cada empreendimento residencial e corporativo no eixo Villa Morra / Paseo La Galería pertence integralmente a uma <strong>PropCo Paraguaia (Matrícula Única)</strong> e é representado por Contratos de Investimento Coletivo (CIC) fracionados em lotes de <strong>R$ 25,00</strong>, permitindo exposição direta à renda imobiliária em dólar.
+              </p>
+            </div>
+            <div class="asset-actions">
+              <button type="button" class="btn btn-primary" data-jump-tab="tab-propco-opco">
+                Inspecionar Estrutura PropCo/OpCo &amp; Gate 6.2
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Mockup 2: Tela de Onboarding & KYC (Zuvia CVM 88) -->
+        <article class="mockup-card">
+          <div class="mockup-img-wrap">
+            <img src="assets/kyc-onboarding-mockup.jpg" alt="Mockup de Tela de Onboarding e KYC do Investidor na Zuvia CVM 88" />
+          </div>
+          <div class="mockup-body">
+            <div>
+              <div class="badge-row">
+                <span class="badge badge-ticker">2. MOCKUP TELA DE ONBOARDING &amp; KYC (ZUVIA CVM 88)</span>
+                <span class="badge badge-rating">BIOMETRIA + SUITABILITY + B3 LEDGER</span>
+              </div>
+              <h3>Jornada de Onboarding Regulado e Validação de Identidade</h3>
+              <p>
+                O investidor inicia pela vitrine da <strong>EPYX Wealth</strong> e realiza o onboarding regulado via SSO na <strong>Zuvia</strong> em 4 etapas auditáveis: <strong>(1) Identificação CPF/CNPJ</strong>, <strong>(2) Biometria Facial</strong>, <strong>(3) Perfil de Suitability e Limite Anual CVM Res. 88</strong> e <strong>(4) Provisionamento da Chave no Ledger B3</strong>.
+              </p>
+            </div>
+            <div class="asset-actions">
+              <button type="button" class="btn btn-primary" id="btnOpenKycSimulator">
+                Testar Fluxo de Onboarding KYC &amp; SSO Zuvia
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Mockup 3: Marketplace de Ativos para Tokenização (Zuvia) -->
+        <article class="mockup-card">
+          <div class="mockup-img-wrap">
+            <img src="assets/zuvia-marketplace-mockup.jpg" alt="Mockup de Tela do Marketplace de Ativos para Tokenização Zuvia e EPYX Wealth" />
+          </div>
+          <div class="mockup-body">
+            <div>
+              <div class="badge-row">
+                <span class="badge badge-ticker">3. MOCKUP MARKETPLACE DE ATIVOS (ZUVIA × EPYX WEALTH)</span>
+                <span class="badge badge-gold">RATING AAA · YIELD US$ · PREÇO R$ 25,00</span>
+              </div>
+              <h3>Marketplace de Oportunidades Imobiliárias Tokenizadas</h3>
+              <p>
+                Vitrine integrada apresentando os edifícios homologados pelo Comitê de Crédito da EPYX Wealth em Assunção: indicadores claros de <strong>Rating da Incorporadora (AAA a A+)</strong>, <strong>Yield Anual Projetado em US$</strong>, barra de progresso da captação primária e botão direto de subscrição via Pix.
+              </p>
+            </div>
+            <div class="asset-actions">
+              <button type="button" class="btn btn-primary" data-jump-tab="tab-marketplace">
+                Abrir Vitrine Interativa &amp; Simulador (4 Edifícios)
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- Mockup 4: Tela de Usuário com Tokens Comprados, Rentabilidade Mensal, Market Value e Saldo Total -->
+        <article class="mockup-card">
+          <div class="mockup-img-wrap">
+            <img src="assets/investor-portfolio-mockup.jpg" alt="Mockup da Tela do Investidor com Saldo Total, Market Value B3, Rentabilidade Mensal e Tokens Comprados" />
+          </div>
+          <div class="mockup-body">
+            <div>
+              <div class="badge-row">
+                <span class="badge badge-gold">4. MOCKUP TELA DO USUÁRIO / INVESTIDOR</span>
+                <span class="badge badge-rating">SALDO TOTAL · MARKET VALUE B3 · DIVIDENDOS PIX</span>
+              </div>
+              <h3>Painel Consolidado do Investidor: Posição, Market Value &amp; Renda Mensal</h3>
+              <p>
+                Interface de acompanhamento patrimonial via API de leitura da Zuvia/B3 exibindo em destaque o <strong>Saldo Total Investido (NAV)</strong>, o <strong>Market Value atualizado no ambiente B3</strong>, a <strong>Rentabilidade Mensal paga via Pix (indexada ao US$)</strong> e a tabela detalhada dos tokens comprados.
+              </p>
+            </div>
+            <div class="asset-actions">
+              <button type="button" class="btn btn-primary" data-jump-tab="tab-carteira-b3">
+                Acessar Painel Interativo da Carteira do Usuário
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         MÓDULO 02: VITRINE DE OFERTAS ASSUNÇÃO & SIMULADOR DETERMINÍSTICO
+         ========================================================================= -->
+    <section id="tab-marketplace" class="tab-panel" aria-label="Vitrine de Ofertas de Tokens Imobiliários e Simulador">
       <div class="filter-bar">
         <div class="filter-group">
           <label for="filterZona">Eixo Imobiliário (Assunção)</label>
@@ -280,9 +317,9 @@
       <div class="marketplace-layout">
         <div id="assetCardsContainer" class="cards-grid"></div>
 
-        <!-- Simulador Determinístico (Seções 0, 2, 4.2 e 8) -->
+        <!-- Simulador Determinístico -->
         <aside class="simulator-panel" aria-label="Simulador de Renda e Cenário Ilustrativo">
-          <span class="badge badge-gold">REGRAS DE DIVULGAÇÃO · SEÇÃO 4.3.1</span>
+          <span class="badge badge-gold">MODELAGEM PATRIMONIAL · SEÇÕES 0, 2 E 8</span>
           <h3>Simulador de Renda Caixa &amp; Cenário Ilustrativo</h3>
           <p style="font-size: 0.79rem; color: var(--text-secondary);">
             Separação obrigatória entre <strong>(A) Renda Distribuível de Locação</strong> e <strong>(B) Variação Patrimonial Ilustrativa</strong>.
@@ -317,7 +354,7 @@
             </div>
 
             <div class="filter-group">
-              <label for="simMoedaRecebimento">Moeda de Recebimento de Renda (Seção 2.1 e 4.1)</label>
+              <label for="simMoedaRecebimento">Moeda de Recebimento de Renda (Seção 4.1)</label>
               <select id="simMoedaRecebimento">
                 <option value="BRL">Receber em Reais no Brasil via Pix (R$)</option>
                 <option value="PYG">Receber em Guaranis no Paraguai (G$ · Residente PY)</option>
@@ -377,13 +414,105 @@
     </section>
 
     <!-- =========================================================================
-         MÓDULO A2: INCORPORADORAS & PIPELINE DE ADMISSÃO DE ATIVOS (SEÇÃO 4.3)
+         MÓDULO 03: TELA DO USUÁRIO (TOKENS COMPRADOS, RENTABILIDADE, MARKET VALUE E SALDO)
+         ========================================================================= -->
+    <section id="tab-carteira-b3" class="tab-panel" aria-label="Tela do Usuário: Tokens Comprados, Rentabilidade Mensal, Market Value e Saldo Total">
+      <!-- KPIs Consolidados da Carteira do Usuário -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-label">Saldo Total Patrimonial (Laudo NAV)</div>
+          <div class="kpi-value" id="userKpiSaldoNav">R$ 52.220,00</div>
+          <div class="kpi-sub">Custo de Aquisição: <strong id="userKpiCustoTotal">R$ 50.000,00</strong></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Market Value (Cotação Ambiente B3/Zuvia)</div>
+          <div class="kpi-value" style="color: var(--navy-b3);" id="userKpiMarketValue">R$ 53.080,00</div>
+          <div class="kpi-sub">Ágio de Mercado sobre Aquisição: <strong style="color: var(--emerald-light);" id="userKpiAgioPct">+6,16%</strong></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Rentabilidade Mensal de Locação (Pix R$)</div>
+          <div class="kpi-value" style="color: var(--emerald-light);" id="userKpiRendaMensal">R$ 349,52 / mês</div>
+          <div class="kpi-sub">Dividend Yield Anualizado em Caixa: <strong>8,39% a.a. (US$)</strong></div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Total de Tokens Comprados (Ledger B3)</div>
+          <div class="kpi-value" style="color: var(--gold-primary);" id="userKpiQtdTokens">2.000 CIC</div>
+          <div class="kpi-sub">100% Conciliado com a Infraestrutura B3</div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.1rem;">
+          <div>
+            <span class="badge badge-ticker">INTEGRAÇÃO SEÇÃO 4.4 · GET /investidores/{id}/posicao</span>
+            <h2 style="margin-top: 0.35rem;">Meus Tokens Comprados — Rentabilidade Mensal, Valor Patrimonial (NAV) &amp; Market Value (B3)</h2>
+            <p class="section-desc" style="margin-bottom: 0;">
+              Em conformidade com a Seção 6.4 da especificação: o sistema exibe de forma segregada o <strong>Valor Patrimonial por Token (Laudo NAV Independente)</strong> e o <strong>Market Value (Último Preço Negociado no Ambiente B3/Zuvia)</strong>.
+            </p>
+          </div>
+          <span class="badge badge-warning">AVISO REGULATÓRIO: LIQUIDEZ SECUNDÁRIA NUNCA É GARANTIDA</span>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Código CIC</th>
+                <th>Empreendimento Lastreado (Assunção)</th>
+                <th>Tokens Comprados</th>
+                <th>Custo Total</th>
+                <th>Saldo Patrimonial (Laudo NAV)</th>
+                <th>Market Value (Ambiente B3/Zuvia)</th>
+                <th>Rentabilidade Mensal (Pix)</th>
+                <th>Chave de Custódia Ledger B3</th>
+              </tr>
+            </thead>
+            <tbody id="portfolioTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="gate-grid">
+        <div class="section-card">
+          <span class="badge badge-ticker">GET /ativos/{id}/livro · ZUVIA / B3</span>
+          <h2 style="margin-top: 0.35rem;">Livro de Ofertas — Mercado Subsequente Integrado B3 / Zuvia</h2>
+          <p class="section-desc">
+            Ambiente de negociação secundária entre investidores com KYC ativo na Zuvia e liquidação instantânea via Pix.
+          </p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Natureza</th>
+                  <th>Série CIC</th>
+                  <th>Quantidade</th>
+                  <th>Cotação (R$)</th>
+                  <th>Ambiente de Liquidação</th>
+                </tr>
+              </thead>
+              <tbody id="orderBookTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2>Laudos Anuais de Avaliação Independente &amp; Hash SHA-256 (Seção 6.5)</h2>
+          <p class="section-desc">
+            Avaliações anuais de valor justo elaboradas por consultorias internacionais independentes.
+          </p>
+          <div id="laudosContainer" style="display: flex; flex-direction: column; gap: 0.75rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         MÓDULO 04: INCORPORADORAS & PIPELINE DE ADMISSÃO DE ATIVOS (SEÇÃO 4.3)
          ========================================================================= -->
     <section id="tab-construtoras" class="tab-panel" aria-label="Incorporadoras Homologadas e Pipeline de Ativos">
       <div class="section-card">
         <h2>Pipeline de Admissão de Novos Ativos no Portal EPYX Wealth (Seção 4.3)</h2>
         <p class="section-desc">
-          Cada empreendimento cumpre 7 etapas auditáveis no backoffice antes de receber o status <strong>"Aprovado para Divulgação"</strong> pelo Compliance da EPYX Wealth e pela Zuvia.
+          Cada empreendimento cumpre 7 etapas auditáveis antes de receber o status <strong>"Aprovado para Divulgação"</strong> pelo Comitê EPYX Wealth e pela Zuvia.
         </p>
         <div class="table-wrap" style="margin-bottom: 1.5rem;">
           <table>
@@ -407,9 +536,9 @@
     </section>
 
     <!-- =========================================================================
-         MÓDULO A3: ESTRUTURA PROPCO/OPCO, GATE 6.2 & DISTRIBUIÇÃO 6.3
+         MÓDULO 05: ESTRUTURA PROPCO/OPCO, GATES 6.2/6.3 E COMPLIANCE CVM 88
          ========================================================================= -->
-    <section id="tab-propco-opco" class="tab-panel" aria-label="Governança Fiduciária PropCo OpCo e Gates Operacionais">
+    <section id="tab-propco-opco" class="tab-panel" aria-label="Governança Fiduciária PropCo OpCo e Compliance CVM 88">
       <div class="gate-grid">
         <div class="section-card">
           <span class="badge badge-gold">ESPECIFICAÇÃO TOKEN ASSUNÇÃO · SEÇÃO 6.2</span>
@@ -438,7 +567,7 @@
 
         <div class="section-card">
           <span class="badge badge-rating">ESPECIFICAÇÃO TOKEN ASSUNÇÃO · SEÇÃO 6.3</span>
-          <h2 style="margin-top: 0.4rem;">Fluxo 6.3 — Fechamento OpCo &amp; Liquidação de Proventos</h2>
+          <h2 style="margin-top: 0.4rem;">Fluxo 6.3 — Fechamento OpCo &amp; Liquidação de Proventos Pix</h2>
           <p class="section-desc">
             Conciliação do aluguel mínimo fixo + variável pago pela OpCo PY à PropCo PY e dupla assinatura eletrônica (Diretoria Financeira + Compliance) antes da instrução ao agente pagador.
           </p>
@@ -481,310 +610,10 @@
           </table>
         </div>
       </div>
-    </section>
-
-    <!-- =========================================================================
-         MÓDULO A4: MINHA POSIÇÃO (LEITURA API ZUVIA), LAUDOS & SECUNDÁRIO B3
-         ========================================================================= -->
-    <section id="tab-carteira-b3" class="tab-panel" aria-label="Minha Posição via API de Leitura Zuvia e Mercado B3">
-      <div class="section-card">
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1.1rem;">
-          <div>
-            <span class="badge badge-ticker">INTEGRAÇÃO SEÇÃO 4.4 · GET /investidores/{id}/posicao</span>
-            <h2 style="margin-top: 0.35rem;">Minha Posição (Leitura via API Zuvia · Cache Sem Dados de KYC no Portal)</h2>
-            <p class="section-desc" style="margin-bottom: 0;">
-              Conforme Seções 4.1 e 7: o Portal EPYX Wealth <strong>não armazena dados de KYC/suitability</strong>; guarda apenas o vínculo (`VinculoInvestidor`) e exibe a posição lida da Zuvia/B3, separando <strong>Laudo NAV</strong> de <strong>Último Negócio B3</strong>.
-            </p>
-          </div>
-          <span class="badge badge-warning">AVISO REGULATÓRIO: LIQUIDEZ SECUNDÁRIA NUNCA É GARANTIDA</span>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Código CIC</th>
-                <th>Ativo Lastreado (Assunção)</th>
-                <th>Posição Lida (API Zuvia)</th>
-                <th>Preço Médio</th>
-                <th>Valor Patrimonial (Laudo NAV)</th>
-                <th>Último Negócio (Ambiente B3/Zuvia)</th>
-                <th>Renda Mensal Estimada</th>
-                <th>Vínculo Ledger B3</th>
-              </tr>
-            </thead>
-            <tbody id="portfolioTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="gate-grid">
-        <div class="section-card">
-          <span class="badge badge-ticker">GET /ativos/{id}/livro · ZUVIA / B3</span>
-          <h2 style="margin-top: 0.35rem;">Livro de Ofertas — Ambiente Subsequente Integrado B3 / Zuvia</h2>
-          <p class="section-desc">
-            O portal exibe o livro de ofertas para consulta e encaminha o investidor apto ao ambiente regulado da Zuvia/B3.
-          </p>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Natureza</th>
-                  <th>Série CIC</th>
-                  <th>Quantidade</th>
-                  <th>Cotação (R$)</th>
-                  <th>Ambiente de Liquidação</th>
-                </tr>
-              </thead>
-              <tbody id="orderBookTableBody"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="section-card">
-          <h2>Laudos Anuais de Avaliação Independente &amp; Hash SHA-256</h2>
-          <p class="section-desc">
-            Avaliações anuais elaboradas por empresas independentes e publicadas pela Zuvia/emissor.
-          </p>
-          <div id="laudosContainer" style="display: flex; flex-direction: column; gap: 0.75rem;"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         MÓDULO B1: PRODUTO B — PICK & GO CROSS-BORDER (LOJAS CDE, PIX SPLIT & QR)
-         ========================================================================= -->
-    <section id="tab-pickgo-loja" class="tab-panel" aria-label="Produto B: Pick and Go Cross-Border Ciudad del Este">
-      <div class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-label">Escopo do Piloto Ciudad del Este (Seção 5.4)</div>
-          <div class="kpi-value">5 Lojas Âncora</div>
-          <div class="kpi-sub">10 Operadores (Pickers) · Turno Único 08h00 às 18h00</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Liquidação &amp; Split Automático (Seção 5.6)</div>
-          <div class="kpi-value" style="color: var(--navy-b3);">Cambio Real</div>
-          <div class="kpi-sub">Pix R$ → Split Loja + Portal Paraguai + EPYX (Sem Custódia)</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Retirada Sem Fila de Caixa (Seção 5.2)</div>
-          <div class="kpi-value" style="color: var(--emerald-light);">Fast-Exit QR</div>
-          <div class="kpi-sub">Ponto exclusivo na própria loja ou anexo · Conferência dupla</div>
-        </div>
-        <div class="kpi-card">
-          <div class="kpi-label">Envio Opcional ao Brasil (Seção 5.7)</div>
-          <div class="kpi-value" style="color: var(--gold-light);">Correios Packet</div>
-          <div class="kpi-sub">Remessa Conforme · Frete + Tributos explícitos antes do Pix</div>
-        </div>
-      </div>
-
-      <!-- Filtro de Lojas do Piloto CDE -->
-      <div class="filter-bar">
-        <div class="filter-group">
-          <label for="filterLojaPickGo">Lojas Homologadas do Piloto (Portal Paraguai · Ciudad del Este)</label>
-          <select id="filterLojaPickGo">
-            <option value="TODAS">Todas as 5 Lojas do Piloto (Carrinho Multi-Loja)</option>
-            <option value="LOJA-NISSIN">Nissei Casa Matriz CDE (Lounge Fast-Exit Av. Adrián Jara)</option>
-            <option value="LOJA-CELLSHOP">Cellshop Importados Paraguay (Balcão Anexo Térreo)</option>
-            <option value="LOJA-MONALISA">Monalisa Paraguay Luxury Store (Concierge Piso Boulevard)</option>
-            <option value="LOJA-MEGA">Mega Eletrônicos (Locker &amp; Balcão Piso 1)</option>
-            <option value="LOJA-MADRID">Madrid Center Importados (Ponto Express Galeria San Blas)</option>
-          </select>
-        </div>
-
-        <div class="filter-group">
-          <label for="filterEntregaPickGo">Modalidade de Recebimento (Seções 5.2 e 5.7)</label>
-          <select id="filterEntregaPickGo">
-            <option value="RETIRADA_LOJA">1. Retirada Expressa na Loja / Anexo em CDE (Sem Fila de Caixa)</option>
-            <option value="CORREIOS_REMESSA">2. Envio ao Brasil via Correios (Remessa Conforme · Com Tributos)</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="marketplace-layout">
-        <!-- Catálogo de Produtos das 5 Lojas -->
-        <div>
-          <div id="pickGoCatalogContainer" class="products-grid"></div>
-        </div>
-
-        <!-- Carrinho Multi-Loja + Motor de Split Cambio Real + Voucher QR Code -->
-        <aside class="simulator-panel" style="border-color: var(--navy-b3-border);" aria-label="Carrinho Pick and Go e Split Cambio Real">
-          <span class="badge badge-ticker">PRODUTO B · CHECKOUT PIX &amp; SPLIT CAMBIO REAL</span>
-          <h3>Carrinho Multi-Loja &amp; Liquidação Pix</h3>
-          <p style="font-size: 0.78rem; color: var(--text-secondary);">
-            A EPYX Wealth e o Portal Paraguai <strong>não retêm dinheiro</strong>: o pagamento Pix vai direto ao <strong>Cambio Real</strong>, que executa o split imediato por pedido.
-          </p>
-
-          <div id="cartItemsContainer" style="margin-top: 0.9rem; display: flex; flex-direction: column; gap: 0.45rem;"></div>
-
-          <div class="sim-form" style="margin-top: 0.85rem;">
-            <div class="filter-group">
-              <label for="pickGoBuyerName">Nome &amp; Documento do Comprador (Turista BR)</label>
-              <input type="text" id="pickGoBuyerName" value="Henrique M. · CPF ***.742.190-**" />
-            </div>
-            <div class="filter-group">
-              <label for="pickGoVisitDate">Data/Janela Prevista de Retirada (Turno 08h–18h)</label>
-              <input type="text" id="pickGoVisitDate" value="Hoje · 14h30 (Ponto Fast-Exit CDE)" />
-            </div>
-          </div>
-
-          <!-- Resumo de Custo Total (Produto + Frete + Tributos se Correios) -->
-          <div class="sim-box-cash" style="margin-top: 0.95rem;">
-            <div class="badge badge-rating" style="margin-bottom: 0.45rem;">
-              DEMONSTRATIVO TRANSPARENTE ANTES DO PIX (SEÇÃO 5.7)
-            </div>
-            <div class="sim-row">
-              <span>Subtotal Produtos (US$):</span>
-              <strong id="pgSubtotalUsd">US$ 0,00</strong>
-            </div>
-            <div class="sim-row">
-              <span>Frete Internacional Correios Packet:</span>
-              <strong id="pgFreteUsd">US$ 0,00 (Retirada em Loja)</strong>
-            </div>
-            <div class="sim-row">
-              <span>Tributos Remessa Conforme (II + ICMS):</span>
-              <strong id="pgTributosUsd">US$ 0,00 (Bagagem Acompanhada)</strong>
-            </div>
-            <div class="sim-row">
-              <span>Total a Pagar no Pix (Câmbio R$ 5,65):</span>
-              <strong id="pgTotalPixBrl" style="color: var(--emerald-light); font-size: 1rem;">R$ 0,00</strong>
-            </div>
-          </div>
-
-          <!-- Split Automático Cambio Real (Seção 5.6) -->
-          <div class="sim-box-split">
-            <div class="badge badge-ticker" style="margin-bottom: 0.45rem;">
-              SPLIT AUTOMÁTICO CAMBIO REAL (SEM CUSTÓDIA EPYX)
-            </div>
-            <div class="sim-row">
-              <span>1. Repasse Líquido Lojista(s) (94,3%):</span>
-              <strong id="pgSplitLojaBrl">R$ 0,00</strong>
-            </div>
-            <div class="sim-row">
-              <span>2. Comissão Portal Paraguai + Picking (4,5%):</span>
-              <strong id="pgSplitPortalBrl">R$ 0,00</strong>
-            </div>
-            <div class="sim-row">
-              <span>3. Fee Tecnológico EPYX Wealth (1,2%):</span>
-              <strong id="pgSplitEpyxBrl">R$ 0,00</strong>
-            </div>
-          </div>
-
-          <div style="margin-top: 1rem; display: flex; gap: 0.6rem;">
-            <button type="button" class="btn btn-cyan" id="btnPagarPixPickGo" style="flex: 1;">
-              Gerar Pix Dinâmico (Cambio Real) &amp; QR de Retirada
-            </button>
-          </div>
-
-          <div id="pickGoVoucherOutput"></div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         MÓDULO B2: OPERAÇÃO DO PILOTO PICK & GO (10 PICKERS · 8H-18H) & FATURAS
-         ========================================================================= -->
-    <section id="tab-pickgo-operacao" class="tab-panel" aria-label="Operação do Piloto Pick and Go e Faturas de Lojistas">
-      <div class="kpi-grid" id="pilotKpisGrid"></div>
 
       <div class="section-card">
-        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-          <div>
-            <span class="badge badge-ticker">PAINEL DO OPERADOR / PICKER · TURNO ÚNICO 08H ÀS 18H (TOLERÂNCIA OFFLINE)</span>
-            <h2 style="margin-top: 0.35rem;">Fila de Separação (Picking), Conferência &amp; Máquina de Estados (Seção 5.5)</h2>
-            <p class="section-desc" style="margin-bottom: 0;">
-              Fluxo operacional: <code>Criado → Pago → Em separação → Separado → Pronto para retirada → Retirado</code> (ou <code>Exceção → Resolvido</code>). Após a saída do cliente, defeito e reclamação são de responsabilidade exclusiva da loja (Seção 5.4).
-            </p>
-          </div>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Pedido</th>
-                <th>Turista Comprador</th>
-                <th>Loja(s) do Piloto</th>
-                <th>Itens</th>
-                <th>Valor Pix (Cambio Real)</th>
-                <th>Picker Responsável</th>
-                <th>Estado Atual (Seção 5.5)</th>
-                <th>Ação do Operador</th>
-              </tr>
-            </thead>
-            <tbody id="pickerOrdersTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="section-card">
-        <h2>Faturas Periódicas de Repasse aos Lojistas &amp; Ajustes de Divergência (Seções 5.3, 5.4 e 7)</h2>
-        <p class="section-desc">
-          A taxa de serviço da operação Pick &amp; Go está embutida na comissão do Portal Paraguai. Eventual item faltante ou a mais apurado no picking é acertado diretamente na fatura da loja (`FaturaLoja`).
-        </p>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>ID Fatura</th>
-                <th>Loja Homologada (CDE)</th>
-                <th>Vendas Brutas (US$)</th>
-                <th>Comissão Portal + Serviço</th>
-                <th>Ajuste de Divergência (Seção 5.4)</th>
-                <th>Líquido Repassado (Cambio Real)</th>
-                <th>Status de Conciliação</th>
-              </tr>
-            </thead>
-            <tbody id="merchantInvoicesTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         MÓDULO G1: CANAL PORTAL PARAGUAI (CMS), RBAC (SEÇÃO 6) E GOVERNANÇA P1-P6
-         ========================================================================= -->
-    <section id="tab-governanca" class="tab-panel" aria-label="Governança Transversal, CMS Portal Paraguai e RBAC">
-      <!-- CMS Canal Portal Paraguai com Trava de Compliance (Seções 3.2 e 4.3.1) -->
-      <div class="section-card">
-        <span class="badge badge-gold">SEÇÃO 3.2 &amp; SEÇÃO 4.3.1 · CMS COM FLUXO DE APROVAÇÃO DE COMPLIANCE</span>
-        <h2 style="margin-top: 0.35rem;">Canal Editorial Portal Paraguai — Controle de Divulgação &amp; Compliance</h2>
-        <p class="section-desc">
-          A equipe de marketing do Portal Paraguai produz conteúdo e links rastreáveis, mas <strong>não tem permissão para alterar ofertas nem publicar sem aprovação do Compliance</strong>. Peças com promessas proibidas ("renda garantida", "lucro certo") são bloqueadas automaticamente.
-        </p>
-        <div id="cmsArticlesContainer" class="builders-grid"></div>
-      </div>
-
-      <!-- Matriz de Papéis e Permissões RBAC (Seção 6) -->
-      <div class="section-card">
-        <h2>Matriz de Papéis, Permissões e Isolamento de Dados (RBAC · Seção 6 e 8.3)</h2>
-        <p class="section-desc">
-          Bases de dados e logs dos Produtos A e B são logicamente segregados: dados de investidores regulados não são acessíveis a Operadores/Lojistas, e dados de compras de turistas não são acessíveis ao Marketing além de métricas agregadas.
-        </p>
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr>
-                <th>Papel (Seção 6)</th>
-                <th>Permissões no Produto A (Tokenização Zuvia/B3)</th>
-                <th>Permissões no Produto B (Pick &amp; Go CDE)</th>
-                <th>Barreira de Segurança &amp; Privacidade (LGPD)</th>
-              </tr>
-            </thead>
-            <tbody id="rbacMatrixTableBody"></tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- Condições Precedentes P1 a P6 e Conciliação + Trilha de Auditoria -->
-      <div class="section-card">
-        <h2>Pendências Regulatórias e Estruturais P1 a P6 &amp; Documentação Técnica</h2>
-        <p class="section-desc">
-          Documentos de engenharia vinculados:
-          <a href="ESPECIFICACAO_PORTAL_EPYX_WEALTH.md" style="color: var(--gold-light); font-weight: 600;">ESPECIFICACAO_PORTAL_EPYX_WEALTH.md (v0.2)</a> e
-          <a href="ESPECIFICACAO_IMOBILIARIO_ZUVIA.md" style="color: var(--navy-b3); font-weight: 600;">ESPECIFICACAO_IMOBILIARIO_ZUVIA.md (v0.1)</a>.
-        </p>
-        <div class="table-wrap">
+        <h2>Pendências Regulatórias e Estruturais P1 a P6 &amp; Conciliação Diária B3</h2>
+        <div class="table-wrap" style="margin-bottom: 1.5rem;">
           <table>
             <thead>
               <tr>
@@ -798,73 +627,85 @@
             <tbody id="p1p6TableBody"></tbody>
           </table>
         </div>
-      </div>
 
-      <div class="gate-grid">
-        <div class="section-card">
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
-            <h2>Conciliação Diária: Cache Posição × Ledger B3</h2>
-            <button type="button" class="btn btn-secondary" id="btnRodarConciliacaoB3">
-              Sincronizar API Zuvia/B3
-            </button>
+        <div class="gate-grid">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem;">
+              <h3>Conciliação Diária: Cache Posição × Ledger B3</h3>
+              <button type="button" class="btn btn-secondary" id="btnRodarConciliacaoB3">
+                Sincronizar API Zuvia/B3
+              </button>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Série CIC</th>
+                    <th>Cache Portal</th>
+                    <th>Ledger B3</th>
+                    <th>Delta</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="reconciliationTableBody"></tbody>
+              </table>
+            </div>
           </div>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Série CIC</th>
-                  <th>Cache Portal</th>
-                  <th>Ledger B3</th>
-                  <th>Delta</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody id="reconciliationTableBody"></tbody>
-            </table>
-          </div>
-        </div>
 
-        <div class="section-card">
-          <h2>Trilha de Auditoria Imutável Transversal (<code>AuditoriaEvento</code> · Seção 7 e 9)</h2>
-          <div id="auditLogContainer" style="display: flex; flex-direction: column; gap: 0.65rem;"></div>
+          <div>
+            <h3 style="margin-bottom: 0.75rem;">Trilha de Auditoria Imutável (<code>AuditoriaEvento</code>)</h3>
+            <div id="auditLogContainer" style="display: flex; flex-direction: column; gap: 0.65rem;"></div>
+          </div>
         </div>
       </div>
     </section>
 
     <footer class="institutional-footer">
       <div>
-        <strong>EPYX WEALTH — PLATAFORMA DE TOKENIZAÇÃO DE ATIVOS (B3/ZUVIA) &amp; PICK &amp; GO CROSS-BORDER</strong><br />
-        Especificação v0.2 · 17/out/2026 · Autor: Cláudio Ikeda (CTO). Este portal não distribui valores mobiliários por conta própria nem retém recursos de clientes.
+        <strong>EPYX WEALTH MANAGEMENT — PLATAFORMA DE TOKENIZAÇÃO DE ATIVOS REAIS (ZUVIA / CVM 88 / B3)</strong><br />
+        Especificação Técnica · Autor: Cláudio Ikeda (CTO). Este portal atua como vitrine institucional e não custodia valores mobiliários nem recursos financeiros.
       </div>
       <div class="mono" style="text-align: right;">
-        PRODUTO A: ZUVIA (RES. CVM 88) &amp; INFRAESTRUTURA B3 · PRODUTO B: PORTAL PARAGUAI, CAMBIO REAL &amp; CORREIOS<br />
-        NADA NESTE PORTAL CONSTITUI PROMESSA DE RENTABILIDADE, LIQUIDEZ, RECOMPRA OU CONSULTORIA FISCAL
+        DISTRIBUIÇÃO REGULADA: ZUVIA (RES. CVM 88) · INFRAESTRUTURA DE REGISTRO: B3<br />
+        NADA NESTE PORTAL CONSTITUI PROMESSA DE RENTABILIDADE, LIQUIDEZ OU RECOMPRA
       </div>
     </footer>
   </div>
 
-  <!-- MODAL NATIVO DE ENCAMINHAMENTO SSO PARA O AMBIENTE REGULADO ZUVIA (<dialog closedby="any">) -->
+  <!-- MODAL NATIVO DE ONBOARDING KYC & SUBSCRIÇÃO SSO NA ZUVIA (<dialog closedby="any">) -->
   <dialog id="subscribeDialog" closedby="any" aria-labelledby="dialogSubscribeTitle">
     <div class="dialog-inner">
       <div class="dialog-header">
         <div>
           <span class="badge badge-gold" id="modalAssetTicker">ZUV-GAL01</span>
-          <h3 id="dialogSubscribeTitle" style="font-family: var(--font-serif); font-size: 1.4rem; margin-top: 0.35rem;">
-            Encaminhamento Autenticado (SSO) ao Ambiente Regulado Zuvia
+          <h3 id="dialogSubscribeTitle" style="font-family: var(--font-sans); font-size: 1.25rem; margin-top: 0.35rem;">
+            Onboarding KYC &amp; Subscrição Regulada via SSO Zuvia (CVM 88)
           </h3>
         </div>
         <button type="button" class="close-btn" id="btnCloseDialog" aria-label="Fechar janela">ESC ✕</button>
       </div>
 
-      <p id="modalAssetSubtitle" style="font-size: 0.81rem; color: var(--text-secondary); margin-bottom: 0.9rem;"></p>
+      <p id="modalAssetSubtitle" style="font-size: 0.81rem; color: var(--text-secondary); margin-bottom: 0.85rem;"></p>
 
-      <div style="padding: 0.7rem 0.9rem; background: var(--bg-surface); border-left: 3px solid var(--gold-primary); font-size: 0.77rem; color: var(--text-secondary); margin-bottom: 0.95rem;">
-        <strong>Fronteira Regulatória (Seção 4.1):</strong> A EPYX Wealth não coleta dados de KYC/suitability nem recebe valores de subscrição. Você será redirecionado com token OAuth2/OIDC assinado para concluir a reserva e o Pix diretamente na plataforma <strong>Zuvia (CVM Res. 88 / B3)</strong>.
+      <!-- Etapas de Onboarding KYC verificadas na Zuvia -->
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.4rem; margin-bottom: 0.95rem; font-size: 0.68rem; text-align: center;">
+        <div style="padding: 0.4rem; background: var(--emerald-bg); border: 1px solid var(--emerald-border); color: var(--emerald-light); font-weight: 700; border-radius: 3px;">
+          1. CPF Verificado ✓
+        </div>
+        <div style="padding: 0.4rem; background: var(--emerald-bg); border: 1px solid var(--emerald-border); color: var(--emerald-light); font-weight: 700; border-radius: 3px;">
+          2. Biometria Facial ✓
+        </div>
+        <div style="padding: 0.4rem; background: var(--emerald-bg); border: 1px solid var(--emerald-border); color: var(--emerald-light); font-weight: 700; border-radius: 3px;">
+          3. Suitability OK ✓
+        </div>
+        <div style="padding: 0.4rem; background: var(--navy-b3-bg); border: 1px solid var(--navy-b3-border); color: var(--navy-b3); font-weight: 700; border-radius: 3px;">
+          4. Ledger B3 Ativo
+        </div>
       </div>
 
       <form id="subscribeForm" method="dialog" style="display: flex; flex-direction: column; gap: 0.9rem;">
         <div class="filter-group">
-          <label for="modalQtdTokens">Simular Quantidade de Tokens CIC para Pré-Preenchimento SSO (R$ 25,00 / CIC)</label>
+          <label for="modalQtdTokens">Quantidade de Tokens CIC a Subscrever na Zuvia (R$ 25,00 / CIC)</label>
           <input type="number" id="modalQtdTokens" value="400" min="1" max="50000" step="10" class="mono" required />
         </div>
 
@@ -878,32 +719,31 @@
             <strong id="modalTotalUsd">US$ 1.769,91</strong>
           </div>
           <div class="sim-row">
-            <span>Renda Mensal Projetada (Caixa US$ → Pix R$):</span>
+            <span>Rentabilidade Mensal Projetada (Caixa US$ → Pix R$):</span>
             <strong id="modalRendaMensalBrl" style="color: var(--emerald-light);">R$ 70,00 / mês</strong>
           </div>
           <div class="sim-row">
             <span>Piso Contratual Mínimo OpCo PY:</span>
-            <strong id="modalPisoOpCo">6,8% a.a. em US$</strong>
+            <strong id="modalPisoOpCo">6,80% a.a. em US$</strong>
           </div>
         </div>
 
         <label style="display: flex; align-items: flex-start; gap: 0.6rem; font-size: 0.76rem; color: var(--text-secondary); cursor: pointer; line-height: 1.45;">
           <input type="checkbox" id="modalTermoRisco" required style="margin-top: 0.2rem;" />
           <span>
-            <strong>Declaração de Ciência (Seção 8.1):</strong> Compreendo que a oferta pública ocorre exclusivamente no ambiente regulado da Zuvia sob a Resolução CVM 88, sem promessa de retorno, sem garantia de liquidez secundária e sem custódia pela EPYX Wealth.
+            <strong>Termo de Ciência (CVM Res. 88):</strong> Declaro ciência de que a subscrição e o KYC ocorrem no ambiente regulado da Zuvia com registro no Ledger B3, sem garantia de recompra por construtora e com separação estrita entre renda de aluguel e cenários ilustrativos de valorização.
           </span>
         </label>
 
         <div style="display: flex; justify-content: flex-end; gap: 0.65rem; margin-top: 0.35rem;">
-          <button type="button" class="btn btn-secondary" id="btnCancelModal">Voltar ao Portal</button>
-          <button type="submit" class="btn btn-primary">Prosseguir via SSO para Zuvia / B3 →</button>
+          <button type="button" class="btn btn-secondary" id="btnCancelModal">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Confirmar Subscrição via SSO Zuvia / Pix →</button>
         </div>
       </form>
     </div>
   </dialog>
 
   <script src="real-estate.js"></script>
-  <script src="pick-and-go.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
